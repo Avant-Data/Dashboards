@@ -21,13 +21,13 @@
 
 - [Sobre](#about)
 - [Começando](#getting_started)
-<!-- - [Deployment](#deployment)
+- [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
 - [TODO](../TODO.md)
 - [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement) -->
+- [Acknowledgments](#acknowledgement)
 
 ## 🧐 Sobre <a name = "about"></a>
 
@@ -37,20 +37,26 @@ Nesse modelo, a estrutura do menu de contexto será montada utilizando uma funç
 
 Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboard do AvantData, visto que depende de bibliotecas ja instaladas no programa.
 
-<!-- ![Exemplo de Menu de Contexto](https://i.imgur.com/lwrTv3a.png) -->
+![Exemplo de Menu de Contexto](https://i.imgur.com/gKq9buh.png)
 
 ## 🏁 Começando <a name = "getting_started"></a>
 
+Ao baixar o código fonte, o usuário deve copiar toda a função 'contextMenuFomulário' e colar na janela de edição de formulário. É importante notar que essa função só funciona se estiver dentro de uma tag html de script.
 
-<!-- These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system. -->
+Ao fazer isso é necessário executar a função, passando como argumento o id (entre aspas) do elemento  html que vai receber o menu. Uma forma de fazer isso é chamar a função quando o documento estiver pronto. No próprio código fonte já existe um exemplo dessa interação, como no exemplo abaixo.
+![Exemplo de documento pronto](https://i.imgur.com/rPDu6Zp.png)
 
-### Prerequisites
+Obs: Caso ja tenha alguma função com esse mesmo nome, é necessário alterá-lo para que não haja conflito sobre qual função deve ser usada.
 
-What things you need to install the software and how to install them.
 
-```
-Give examples
-```
+
+
+### Configurando opções
+
+A estrutura de um menu de contexto é criada dentro de uma variável "var" em um formato JSON. Cada uma das opções é separada em um bloco dentro dessa estrutura com um padrão que deve ser mantido. Caso o menu tenha subopções, elas também são separadas em blocos dentro das opções.
+
+Dessa forma é possível adicionar ou remover opções e suboções do menu de contexto adicionando ou removendo blocos. É possível também alterar o nome de cada opção substituindo o campo de 'texto'(grifados em vermelho)
+![Blocos de opções](https://i.imgur.com/srvjU9H.png)
 
 ### Installing
 

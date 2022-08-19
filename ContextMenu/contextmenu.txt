@@ -1,0 +1,75 @@
+<script>
+    $(document).ready(() => {
+        contextMenuFomulário('id do elemento html que vai receber o menu')
+    });
+
+	function contextMenuFomulário(idHtmlElement) {
+	//Criando a lista de opções do menu de contexto
+    var context = [
+		{
+            "text": "Option 1",
+            "icon": '<i class="fas fa-search"></i>',
+            "sub": [
+				{
+                    "text": "Suboption A",
+                    "icon": '<i class="fas fa-cogs"></i>',
+                    "events": {
+                        "click": () => {
+                           //Aqui vai o código do que deve acontecer caso o usuário clique em Suboption A
+						   
+                        }
+                    },
+                },
+                {
+                    "text": "Suboption B",
+                    "icon": '<i class="fas fa-tv"></i>',
+                    "events": {
+                        "click": () => {                           
+                           //Aqui vai o código do que deve acontecer caso o usuário clique em Suboption B
+						   
+                        }
+                    },
+                }
+            ]
+        },
+        {
+            "text": "Option 2",
+            "icon": '<i class="fas fa-pencil-alt"></i>',
+            "events": {
+                "click": () => {
+				//Aqui vai o código do que deve acontecer caso o usuário clique em Option 2
+
+                }
+            }
+        },
+        {
+            "text": "Option 3",
+            "icon": '<i class="fas fa-trash"></i>',
+            "events": {
+                "click": () => {
+				//Aqui vai o código do que deve acontecer caso o usuário clique em Option 3
+
+                }
+            }
+        }
+    ];
+	
+	// Organiza as opções do menu de contexto em órdem alfabética
+    try { 
+        context.sort(function(a, b) {
+            return (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0);
+        })
+    } catch {}
+
+    $("#" + idHtmlElement).unbind('contextmenu');
+    $("#" + idHtmlElement).on('contextmenu', function(e) {
+        var menu = new ContextMenu(context);
+        if (typeof Rotas.lastOpenedCmen !== 'undefined') {
+            Rotas.lastOpenedCmen.hide();
+        }
+        menu.display(e);
+        Rotas.lastOpenedCmen = menu;
+    });
+}
+</script>
+
