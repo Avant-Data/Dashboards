@@ -3,7 +3,7 @@
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Project Title</h3>
+<h3 align="center">Menu de contexto</h3>
 
 <div align="center">
 
@@ -13,13 +13,13 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> Como aplicar e utilizar um menu de contexto dentro dos formulários no dashboard.
     <br> 
 </p>
 
-## 📝 Table of Contents
+## 📝 Conteúdo
 
-- [Abou](#about)
+- [Sobre](#about)
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Usage](#usage)
@@ -31,7 +31,11 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Um "Menu de contexto" é uma janela de opções que aparece quando o usuário clica com o botão direito do mouse. Ao opções que serão exibidas estão sempre ligadas com a região da tela em que foi clicada.
+
+Nesse modelo, a estrutura do menu de contexto será montada utilizando uma função na linguagem JavaScript interagindo com o HTML onde será aplicado, que pode variar de usuário para usuário. 
+
+Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboard do AvantData, visto que depende de bibliotecas ja instaladas no programa.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
