@@ -19,7 +19,7 @@
 
 ## 📝 Table of Contents
 
-- [About](#about)
+- [Abou](#about)
 - [Getting Started](#getting_started)
 - [Deployment](#deployment)
 - [Usage](#usage)
