@@ -13,99 +13,49 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> Exemplos de Dashboards para o AvantData
     <br> 
 </p>
 
-## 📝 Table of Contents
+## Exemplos
 
-- [Abou](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+- [Menu de Contexto](#contextmenu)
+- [Cabeçalho](#header)
+- [Sankey](#sankey)
+- [Linha do Tempo](#timeline)
+- [Grafo](#form)
+- [Carrosel](#carousel)
+- [Tabela de Dados](#datatable)
 
-## 🧐 About <a name = "about"></a>
+## Menu de Contexto <a name = "contextmenu"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+Documentação do menu de contexto detalhada na pasta [ContextMenu](./ContextMenu/)
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+## Cabeçalho <a name = "header"></a>
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+Documentação dos cabeçalhos detalhada na pasta [Header](./Header/)
 
-### Prerequisites
+## Sankey <a name = "sankey"></a>
 
-What things you need to install the software and how to install them.
+Documentação do sankey detalhada na pasta [Sankey](./Sankey/)
 
-```
-Give examples
-```
+## Linha do Tempo <a name = "timeline"></a>
 
-### Installing
+Documentação da linha do tempo detalhada na pasta [Timeline](./Timeline/)
 
-A step by step series of examples that tell you how to get a development env running.
+## Grafo <a name = "timeline"></a>
 
-Say what the step will be
+Documentação dos grafos detalhada na pasta [Graphs](./Graphs/)
 
-```
-Give the example
-```
+## Carrosel <a name = "timeline"></a>
 
-And repeat
+Documentação do carrosel detalhada na pasta [Graphs](./Carousel/)
 
-```
-until finished
-```
+## Tabela de Dados <a name = "datatable"></a>
 
-End with an example of getting some data out of the system or using it for a little demo.
+Documentação das tabelas de dados detalhada na pasta [Datatable](./Datatable/)
 
-## 🔧 Running the tests <a name = "tests"></a>
+## Construído Utilizando <a name = "built_using"></a>
 
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
-
-## 🚀 Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system.
-
-## ⛏️ Built Using <a name = "built_using"></a>
-
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
-
-## ✍️ Authors <a name = "authors"></a>
-
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
+- [AvantData](https://www.avantdata.com.br/) - Plataforma de análise, correlacionamento e gestão de dados em redes corporativas
+- [AvantApi](https://avantapi.avantsec.com.br/) - Família de endpoints RESTFUL API para customização de ações no AvantData
