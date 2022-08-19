@@ -24,7 +24,7 @@
 - [Sankey](#sankey)
 - [Linha do Tempo](#timeline)
 - [Grafo](#form)
-- [Carrosel](#carousel)
+- [Carrossel](#carousel)
 - [Tabela de Dados](#datatable)
 
 ## Menu de Contexto <a name = "contextmenu"></a>
@@ -47,9 +47,9 @@ Documentação da linha do tempo detalhada na pasta [Timeline](./Timeline/)
 
 Documentação dos grafos detalhada na pasta [Graphs](./Graphs/)
 
-## Carrosel <a name = "timeline"></a>
+## Carrossel <a name = "timeline"></a>
 
-Documentação do carrosel detalhada na pasta [Graphs](./Carousel/)
+Documentação do carrossel detalhada na pasta [Graphs](./Carousel/)
 
 ## Tabela de Dados <a name = "datatable"></a>
 
