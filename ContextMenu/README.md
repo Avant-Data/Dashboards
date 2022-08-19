@@ -20,16 +20,16 @@
 ## 📝 Conteúdo
 
 - [Sobre](#about)
-- [Getting Started](#getting_started)
-- [Deployment](#deployment)
+- [Começando](#getting_started)
+<!-- - [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
 - [TODO](../TODO.md)
 - [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
+- [Acknowledgments](#acknowledgement) -->
 
-## 🧐 About <a name = "about"></a>
+## 🧐 Sobre <a name = "about"></a>
 
 Um "Menu de contexto" é uma janela de opções que aparece quando o usuário clica com o botão direito do mouse. Ao opções que serão exibidas estão sempre ligadas com a região da tela em que foi clicada.
 
@@ -37,9 +37,12 @@ Nesse modelo, a estrutura do menu de contexto será montada utilizando uma funç
 
 Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboard do AvantData, visto que depende de bibliotecas ja instaladas no programa.
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+<!-- ![Exemplo de Menu de Contexto](https://i.imgur.com/lwrTv3a.png) -->
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
+## 🏁 Começando <a name = "getting_started"></a>
+
+
+<!-- These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system. -->
 
 ### Prerequisites
 
