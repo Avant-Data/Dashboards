@@ -1,0 +1,168 @@
+<head>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.12.1/af-2.4.0/b-2.2.3/b-colvis-2.2.3/b-html5-2.2.3/b-print-2.2.3/cr-1.5.6/date-1.1.2/fc-4.1.0/fh-3.2.4/kt-2.7.0/r-2.3.0/rg-1.2.0/rr-1.2.8/sc-2.0.7/sb-1.3.4/sp-2.0.2/sl-1.4.0/sr-1.1.1/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    
+    <style>
+        .dt-buttons {
+            display:none;
+        }
+        .btnUnder3:hover {
+            box-shadow: 2px 2px 10px grey;
+            background-color: #e96817;
+            color:white;
+        }
+    </style>
+</head>
+
+<div style="overflow:auto; height: 800px; font-family: 'Bahnschrift', sans-serif;" >
+    
+    
+    <div class="p-3" style="background-color: #38a0a4">        
+        <div class="mt-2">
+            <h5 class="mt-2">
+                <span class=" text-center p-1 font-weight-bold" 
+                style="border-radius:10px;padding:3px; color:#38a0a4; background-color: white;">Título Tabela</span>
+            </h5>            
+        </div>        
+    </div>
+    
+    <div id="divTable" class="mt-2 display">
+        <table id="table" class="table table-striped table-bordered" style="width:100%">
+            <thead id="tableHead" style="background-color: #38a0a4; color: white;">
+                <tr class="text-center">
+                                          
+                    <th>ID Agente</th>       <!-- Coluna 1 -->  
+                    <th>Agente HostName</th> <!-- Coluna 2 -->
+                    <th>ID Monitor</th>      <!-- Coluna 3 -->
+                    <th>Monitor Name</th>    <!-- Coluna 4 -->
+                    
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+            <tfoot id="tableFooter">                
+            </tfoot>
+        </table>        
+    </div>
+    <div id="divBtnsExport" class="row pl-4" style="clear:both;" hidden="true">
+        <button id="btnCopyExport3" class="col-1 btnUnder3" style="border:thin ; border-radius: 8px 0px 0px 8px;" onclick="takeExport3('copy')">copiar</button>
+        <button id="btnExelExport3" class="col-1 btnUnder3" style="border:thin ; border-radius: 0px 0px 0px 0px;" onclick="takeExport3('excel')">excel</button>
+        <button id="btnCsvExport3" class="col-1 btnUnder3" style="border:thin ; border-radius: 0px 8px 8px 0px;" onclick="takeExport3('csv')">csv</button>
+        
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        getTableResultsByVuln()      
+       
+    });   
+    
+    function takeExport3(type) {
+        if(type == 'copy') {
+        $('.buttons-copy[aria-controls=table]').click()
+        }
+        if(type == 'csv') {
+        $('.buttons-csv[aria-controls=table]').click()
+        }
+        if(type == 'excel') {
+        $('.buttons-excel[aria-controls=table]').click()
+        }
+    }    
+    
+    function getTableResultsByVuln() {     
+        
+        let queryVul = {
+            index: "AvantAgent",
+            size:50,
+            body: {
+                query: {
+                    query_string: {
+                        query: `idAgent: *`
+                    }
+                }
+            }
+        };
+        
+        $.ajax({
+           url: '/avantapi/avantData/search/customSearch',
+           method: 'POST',
+           headers: {
+               'cluster': 'AvantData'
+           },
+           data: JSON.stringify(queryVul),
+           success: (response)=> {               
+            
+            if(response.hits != undefined && response.hits != null && response.hits != false && response.hits != '') {
+                
+               let resultadosTarefa = response.hits.hits;
+               console.log(resultadosTarefa)
+               
+                for (idx in resultadosTarefa) {
+                    
+                    
+                        var linha = `<tr id="tableLine-${resultadosTarefa[idx]._id}">`
+                                              
+                            linha += `<td>${resultadosTarefa[idx]._source.idAgent}</td>`;       // Coluna 1
+                            linha += `<td>${resultadosTarefa[idx]._source.agentHostName}</td>`; // Coluna 2
+                            linha += `<td>${resultadosTarefa[idx]._source.idMonitor}</td>`;     // Coluna 3
+                            linha += `<td>${resultadosTarefa[idx]._source.monitorName}</td>`;   // Coluna 4
+                           
+                        linha += '</tr>';
+                        $('#tableBody').append(linha);
+                }
+            }
+           
+            tableFormat() 
+           },
+           error: (error) => {
+               
+               tableFormat()
+           }
+        });
+    }
+    
+    function tableFormat() {
+        $('#table').DataTable({
+            "language": {
+                scrollY: true,
+                "sEmptyTable": Dicionario.tradutor("Sem registro"),
+                "sInfo": Dicionario.tradutor("START END TORAL"),
+                "sInfoEmpty": Dicionario.tradutor("SHOWING 0 TO 0 OF 0 RECORDS"),
+                "sInfoFiltered": "(" + Dicionario.tradutor("FILTERED FROM MAX RECORDS") + ")",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": Dicionario.tradutor("MENU RESULTS PER PAGE"),
+                "sLoadingRecords": Dicionario.tradutor("LOADING") + "...",
+                "sProcessing": Dicionario.tradutor("PROCESSING") + "...",
+                "sZeroRecords": Dicionario.tradutor("NO RECORDS FOUND"),
+                "sSearch": Dicionario.tradutor("SEARCH"),
+                "oPaginate": {
+                    "sNext": Dicionario.tradutor("NEXT"),
+                    "sPrevious": Dicionario.tradutor("PREVIOUS"),
+                    "sFirst": Dicionario.tradutor("FIRST"),
+                    "sLast": Dicionario.tradutor("LAST")
+                },
+                "oAria": {
+                    "sSortAscending": ": " + Dicionario.tradutor("SORT COLUMNS ASCENDING"),
+                    "sSortDescending": ": " + Dicionario.tradutor("SORT COLUMNS DESCENDANT")
+                }
+            },
+            "destroy": true,
+            dom: 'Bfrtip',
+            buttons: [
+            'copy',
+            'excel',
+            'csv'
+            ],
+            colReorder:{realtime:false},
+        });
+        $('#divBtnsExport').attr('hidden', false);
+    }
+    
+    
+</script>
