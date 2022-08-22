@@ -1,4 +1,4 @@
-<p align="center">
+<!-- <p align="center">
   <a href="" rel="noopener">
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
@@ -9,7 +9,7 @@
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 
-</div>
+</div> -->
 
 ---
 
