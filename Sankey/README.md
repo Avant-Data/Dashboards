@@ -49,19 +49,19 @@ E para criação do Sankey demonstrado, basta escrever o código dentro dos dash
 FusionCharts.ready(function() {
   var topStores = new FusionCharts({
     type: "sankey",
-    renderAt: "containerSankey",
-    id: "sankeyExample",
-    width: "650",
-    height: "400",
-    dataFormat: "json",
+    renderAt: "containerSankey", // ID alvo para renderizar o sankey
+    id: "sankeyExample", // ID a ser gerado
+    width: "650", // Largura do Sankey
+    height: "400", // Altura do Sankey
+    dataFormat: "json", // Formato dos dados em dataSource
     dataSource: {
-      chart: {
+      chart: { // Base do Sankey
         caption: "AvantData - Exemplo de Sankey",
         legendPosition: "bottom",
         linkcolor: 'blend',
         theme: "fusion"
       },
-      nodes: [{
+      nodes: [{ // Labels de cada node
           label: "A"
         },
         {
@@ -77,7 +77,7 @@ FusionCharts.ready(function() {
           label: "Z"
         }
       ],
-      links: [{
+      links: [{ // Caminho de cada node com o seu tamanho
           from: "A",
           to: "M",
           value: 713241
@@ -110,6 +110,8 @@ FusionCharts.ready(function() {
 
 ```
 No exemplo de código, os tipos de dados são carregados pelo formato `json`, do qual existem dois conjuntos de campos, os `nodes` que representam o início e o final de cada fluxo, e os `links` que presentam o caminho entre dois nós. Os nodes precisam conter a identificação de cada nó, enquanto os links contém o ínicio, o final e o valor de cada caminho.
+
+Mais informações sobre a construção de Sankey Charts podem ser encontradas em [fusioncharts.com/dev](https://www.fusioncharts.com/dev/chart-guide/standard-charts/sankey-diagram)
 
 ## Construído Utilizando <a name = "built_using"></a>
 
