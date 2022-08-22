@@ -21,9 +21,9 @@
 
 - [Sobre](#about)
 - [Começando](#getting_started)
+- [Utilização](#usage)
+- [Construído Utilizando](#built_using)
 <!-- - [Deployment](#deployment)
-- [Usage](#usage)
-- [Built Using](#built_using)
 - [TODO](../TODO.md)
 - [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
