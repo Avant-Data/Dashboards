@@ -20,6 +20,7 @@
 - [Customizando](#editing)
 - [Posicionamento](#position)
 - [Precauções](#precaution)
+- [Construído Utilizando](#built_using)
 
 ## Sobre <a name = "about"></a>
 
@@ -83,3 +84,4 @@ Entretanto, caso o usuário precise adicionar um atributo "id", ele deve ser ÚN
 
 - [AvantData](https://www.avantdata.com.br/) - Plataforma de análise, correlacionamento e gestão de dados em redes corporativas
 - [AvantApi](https://avantapi.avantsec.com.br/) - Família de endpoints RESTFUL API para customização de ações no AvantData
+- [MDBootstrap](https://mdbootstrap.com/) - Biblioteca de aparências e estilos 
