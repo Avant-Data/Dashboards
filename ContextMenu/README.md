@@ -1,11 +1,11 @@
 <!-- <p align="center">
   <a href="" rel="noopener">
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p>
+</p> -->
 
 <h3 align="center">Menu de contexto</h3>
 
-<div align="center">
+<!-- <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 
