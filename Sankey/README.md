@@ -20,12 +20,13 @@
 ## Índice
 
 - [Sobre](#about)
+- [Exemplo](#example)
 
 ## Sobre <a name = "about"></a>
 
 Um diagrama Sankey é uma visualização usada para descrever um fluxo de um conjunto de valores para outro. Sankeys são melhor usados ​​quando você deseja mostrar um mapeamento de muitos para muitos entre dois domínios ou vários caminhos por meio de um conjunto de estágios. Podem ser construídos a partir de qualquer conjunto de dados que se tenha nós sendo ligados a outros nós e uma quantidade para representar o fluxo
 
-## Utilização <a name = "use"></a>
+## Exemplo <a name = "use"></a>
 
 Para utilização nos painéis do AvantData, um diagrama Sankey pode ser facilmente desenvolvido com o [FusionCharts](https://www.fusioncharts.com/dev/chart-guide/standard-charts/sankey-diagram) e algum conjunto de dados.
 
@@ -41,7 +42,7 @@ O seguinte Sankey pode ser produzido
 ![Exemplo de Sankey](https://i.imgur.com/V4obmBE.png)
 
 E para criação do Sankey demonstrado, basta escrever o código dentro dos dashboards em um formulário HTML:
-```html
+```js
 <div id="containerSankey">Sankey vai renderizar aqui</div>
 
 <script>
@@ -108,9 +109,10 @@ FusionCharts.ready(function() {
 </script>
 
 ```
-No exemplo de código, os tipos de dados são carregados pelo formato `json`, do qual existem dois conjuntos de campos, os `nodes` que representam o início e o final de cada fluxo, e os `links` que presentam o caminho entre dois nós 
+No exemplo de código, os tipos de dados são carregados pelo formato `json`, do qual existem dois conjuntos de campos, os `nodes` que representam o início e o final de cada fluxo, e os `links` que presentam o caminho entre dois nós. Os nodes precisam conter a identificação de cada nó, enquanto os links contém o ínicio, o final e o valor de cada caminho.
 
 ## Construído Utilizando <a name = "built_using"></a>
 
 - [AvantData](https://www.avantdata.com.br/) - Plataforma de análise, correlacionamento e gestão de dados em redes corporativas
 - [AvantApi](https://avantapi.avantsec.com.br/) - Família de endpoints RESTFUL API para customização de ações no AvantData
+- [FusionCharts](https://github.com/fusioncharts) - Biblioteca de gráficos JavaScript que fornece gráficos interativos e responsivos
