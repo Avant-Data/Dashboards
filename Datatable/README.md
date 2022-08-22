@@ -244,7 +244,7 @@ function tableFormat() {
     $('#divBtnsExport').attr('hidden', false);
 } 
 ```
-Necessário ressaltar que o '#table' é o 'id' da tabela. Essa função é ja é executada na criação da tabela.
+Necessário ressaltar que o '#table' é o 'id' da tabela. Essa função é ja é executada na criação da tabela, e o '#divBtnsExport' é o 'id' do bloco onde foram criados os botões de exportação.
 ## Precauções <a name = "precaution"></a>
 
 O modelo disponibilizado pelo código fonte conta com alguns elementos HTML com atributo "id" e por isso, para usar esse cabeçalho em outros paineis, é necessário alterar todos os atributos "id" e todos os lugares onde ele é utilizado.
