@@ -16,7 +16,6 @@
 - [Pesquisa](#search)
 - [Aplicando DataTable](#DataTable)
 - [Precauções](#precaution)
-- [Código fonte](#font_code)
 - [Construído Utilizando](#built_using)
 
 ## Sobre <a name = "about"></a>
@@ -203,6 +202,49 @@ function getInitialTable() {
 Caso seja necessário, é possivel modificar o método de busca, para trazer dados de outros tipos de banco ou de outras rotas da api, sempre sequindo a documentação. Nesse caso, dentro da cláusula de sucesso, os dados são mapeados e distribuídos em uma variável 'linha' e assim criando cada ítem correspondente a coluna anteriormente estipulada na criação do esqueleto da tabela. Vale observar que logo apos a criação da 'linha' ela é acoplada no corpo da tabela, utilizando o 'id' com a estrutura '$('#tableBody').append(linha);'.
 
 ## Aplicando DataTable <a name = "DataTAble"></a>
+
+Agora que a tabela ja está montada, tanto o esqueleto quanto as linhas que foram inseridas dinamicamente, podemos aplicar a biblioteca DataTable que formatará a tabela dentro da estrutura desejada e configurará os botões de exportação.
+
+```js
+function tableFormat() {
+    $('#table').DataTable({
+        "language": {
+            scrollY: true,
+            "sEmptyTable": Dicionario.tradutor("Sem registro"),
+            "sInfo": Dicionario.tradutor("START END TORAL"),
+            "sInfoEmpty": Dicionario.tradutor("SHOWING 0 TO 0 OF 0 RECORDS"),
+            "sInfoFiltered": "(" + Dicionario.tradutor("FILTERED FROM MAX RECORDS") + ")",
+            "sInfoPostFix": "",
+            "sInfoThousands": ".",
+            "sLengthMenu": Dicionario.tradutor("MENU RESULTS PER PAGE"),
+            "sLoadingRecords": Dicionario.tradutor("LOADING") + "...",
+            "sProcessing": Dicionario.tradutor("PROCESSING") + "...",
+            "sZeroRecords": Dicionario.tradutor("NO RECORDS FOUND"),
+            "sSearch": Dicionario.tradutor("SEARCH"),
+            "oPaginate": {
+                "sNext": Dicionario.tradutor("NEXT"),
+                "sPrevious": Dicionario.tradutor("PREVIOUS"),
+                "sFirst": Dicionario.tradutor("FIRST"),
+                "sLast": Dicionario.tradutor("LAST")
+            },
+            "oAria": {
+                "sSortAscending": ": " + Dicionario.tradutor("SORT COLUMNS ASCENDING"),
+                "sSortDescending": ": " + Dicionario.tradutor("SORT COLUMNS DESCENDANT")
+            }
+        },
+        "destroy": true,
+        dom: 'Bfrtip',
+        buttons: [
+        'copy',
+        'excel',
+        'csv'
+        ],
+        colReorder:{realtime:false},
+    });
+    $('#divBtnsExport').attr('hidden', false);
+} 
+```
+Necessário ressaltar que o '#table' é o 'id' da tabela. Essa função é ja é executada na criação da tabela.
 ## Precauções <a name = "precaution"></a>
 
 O modelo disponibilizado pelo código fonte conta com alguns elementos HTML com atributo "id" e por isso, para usar esse cabeçalho em outros paineis, é necessário alterar todos os atributos "id" e todos os lugares onde ele é utilizado.
@@ -211,7 +253,7 @@ Os atributos "id" são uma identidade ÚNICA de cada elemento, caso contrário e
 
 O mesmo acontece com os nomes de cada 'function' JavaScript, cada nome deve ser único para cada cópia desse modelo em uma visualização, tanto na criação, quando na hora de executar.
 
-## Código fonte <a name = "font_code"></a>
+
 ## Construído Utilizando <a name = "built_using"></a>
 
 - [AvantData](https://www.avantdata.com.br/) - Plataforma de análise, correlacionamento e gestão de dados em redes corporativas
