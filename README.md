@@ -26,6 +26,7 @@
 - [Grafo](#form)
 - [Carrossel](#carousel)
 - [Tabela de Dados](#datatable)
+- [Rodapé](#footer)
 
 ## Menu de Contexto <a name = "contextmenu"></a>
 
@@ -54,6 +55,10 @@ Documentação do carrossel detalhada na pasta [Graphs](./Carousel/)
 ## Tabela de Dados <a name = "datatable"></a>
 
 Documentação das tabelas de dados detalhada na pasta [Datatable](./Datatable/)
+
+## Rodapé <a name = "footer"></a>
+
+Documentação dos rodapés detalhada na pasta [Datatable](./Footer/)
 
 ## Construído Utilizando <a name = "built_using"></a>
 
