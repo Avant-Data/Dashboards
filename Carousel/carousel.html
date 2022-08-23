@@ -1,4 +1,4 @@
-<div id="carouselId" class="carousel slide " data-ride="carousel" style="height: 443px; width: 1100px;">
+<div id="carouselId" data-interval="3000" class="carousel slide " data-ride="carousel" style="height: 443px; width: 1100px;">
     
     <ol class="carousel-indicators">
       <li data-target="#carouselId" data-slide-to="0" class="active"></li>
@@ -34,9 +34,7 @@
 <script>
 
     $(document).ready(function () {
-        $('.carousel').carousel({
-            interval: 3000
-        })     
+        $('.carousel').carousel()     
         
     });
     
