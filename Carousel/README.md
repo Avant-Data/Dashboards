@@ -42,7 +42,7 @@ Inicialmente temos a montagem da estrutura do "índice" de cada imagem, que são
 Cada um deles também deve estar ligado ao 'id' da divisão geral, que no caso do modelo é 'carouselId'.
 
 ```html
-<div id="carouselId" data-interval="3000" class="carousel slide " data-ride="carousel" style="height: 443px; width: 1100px;">
+<div id="carouselId" data-interval="3000" class="carousel slide " data-ride="carousel" style="height: 417px; width: 1030px;">
     
   <ol class="carousel-indicators">
     <li data-target="#carouselId" data-slide-to="0" class="active"></li>
@@ -56,15 +56,15 @@ Cada um deles também deve estar ligado ao 'id' da divisão geral, que no caso d
   <div class="carousel-inner">
       
     <div class="carousel-item active">
-      <img class="d-block w-100" src="https://i.imgur.com/nIe5gQ3.png" alt="Primeiro Slide" style="height: 443px; width: 1100px;">
+      <img class="d-block w-100" src="https://i.imgur.com/nIe5gQ3.png" alt="Primeiro Slide" style="height: 417px; width: 1030px;">
     </div>
     
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://i.imgur.com/TLCoE7u.png" alt="Segundo Slide" style="height: 443px; width: 1100px;">
+      <img class="d-block w-100" src="https://i.imgur.com/TLCoE7u.png" alt="Segundo Slide" style="height: 417px; width: 1030px;">
     </div>
     
     <div class="carousel-item">
-      <img class="d-block w-100" src="https://i.imgur.com/cqgv6LH.png" alt="Terceiro Slide" style="height: 443px; width: 1100px;">
+      <img class="d-block w-100" src="https://i.imgur.com/cqgv6LH.png" alt="Terceiro Slide" style="height: 417px; width: 1030px;">
     </div>
     
   </div>
