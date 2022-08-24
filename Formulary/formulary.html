@@ -1,7 +1,13 @@
 <head>
     <style>
-        .hover-r:hover {
-            background-color: #dceef7;
+        .hover-g:hover {
+            background-color: #dcd516 !important;
+        }
+        .hover-b:hover {
+            background-color: #52c1c5 !important;
+        }
+        .hover-o:hover {
+            background-color: #ff8c53 !important;
         }
     </style>
 </head>
@@ -13,23 +19,22 @@
         <h3>Título</h3>
         <h5>Subtítulo</h5>
     </div>
-    <br>
     
     <!--Bloco dos Inputs-->
     <div class="row m-3">
-        <div class="col-4">
+        <div class="col-12">
                
             <!-- Bloco de Texto e Número -->
             <div class="row">
                 
                 <div class="col-6">
                     <label >Texto</label>
-                    <input type="text" id="consultaMatricula"  class="form-control form-control-sm mb-3">
+                    <input type="text" id="textInput"  class="form-control form-control-sm mb-3">
                 </div>
                
                 <div class="col-6">
                     <label >Número</label>
-                    <input type="number" id="consultaNome"  class="form-control form-control-sm mb-3">
+                    <input type="number" id="numberInput"  class="form-control form-control-sm mb-3">
                 </div>
                 
             </div>
@@ -39,7 +44,7 @@
                 
                 <div class="col-6">
                     <label>Select</label>
-                    <select id="paineisFormulario" class="browser-default custom-select custom-select-sm">
+                    <select id="selectInput" class="browser-default custom-select custom-select-sm">
                         <option value="" disabled selected>Selecione</option>
                         <option value="option 1">Opção 1</option>
                         <option value="option 2">Opção 2</option>
@@ -50,7 +55,7 @@
                     
                 <div class="col-6">
                     <label >Datalist</label>
-                    <input list="listAssetsFormScan6" name="nameIp" id="consultaIp" class="form-control form-control-sm mb-3">                       
+                    <input list="listAssetsFormScan6" id="datalistInput" class="form-control form-control-sm mb-3">                       
                     <datalist id="listAssetsFormScan6">
                         <option value="option A"></option>
                         <option value="option B"></option>
@@ -66,36 +71,35 @@
 
                 <div class="col-6">
                     <label >Data e hora</label>
-                    <input type="datetime-local" id="date_init_form" name="date_init" class="form-control form-control-sm mb-3">
+                    <input type="datetime-local" id="dateTimeInput" class="form-control form-control-sm mb-3">
                 </div>
                 
                 <div class="col-6">
                     <label >Comentário</label>
-                    <textarea id="descricaoQueryTab" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
+                    <textarea id="commentInput" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
                 </div>
 
             </div>				
             <br>
 				        
-            <!-- Bloco dos Botões -->
-            <div>
-                <button class="hover-r " style="border-style: solid; border-width: thin; border-radius: 5px; border-color: #546e7a;" onclick="clearCamposPainelInt()">Limpar</button>
-                <button class="hover-r " style="border-style: solid; border-width: thin; border-radius: 5px; border-color: #546e7a;" onclick="applyGeral()">Aplicar</button>
+            <!-- Bloco dos Botões #546e7a     laranja #e96817   azul #38a0a4  verde #bab513 -->
+            <div class="row justify-content-md-center">
+                
+                <button class="col-2 hover-o mr-1 btn p-2" 
+                style="background-color: #e96817; border-color: white; color:white;;border-style: solid; border-width: thin; border-radius: 5px;"
+                onclick="clearForm()">Limpar</button>
+                
+                <button class="col-2 hover-b ml-1 mr-1 btn p-2" 
+                style="background-color: #38a0a4; border-color: white; color:white;border-style: solid; border-width: thin; border-radius: 5px;" 
+                onclick="applyGeral()">Token</button>
+                
+                <button class="col-2 hover-g ml-1 btn p-2" 
+                style="background-color: #bab513; border-color: white; color:white;border-style: solid; border-width: thin; border-radius: 5px;" 
+                onclick="applyGeral(true)">Pivotear</button>
+                
             </div>
             
-            <br>
-            <br>
-            <br>
-            <hr />
-            <div class='row'>
-                <div class='col'>
-                    <br>
-                </div>
-            </div>
-            <span id="matricula-selecionado"></span>
-       
         </div>
-       
     </div>
 </div>
 
@@ -103,27 +107,81 @@
 
     $(document).ready(function () {
         // resetDashboard()
+        getPanels()
         
     });
-
-    function applyGeral() {
-   
-    }
     
     function getPanels() {
-        var idVisualizacaoAtual = localStorage.getItem("visualizacao_atual")
+        var idVisualizacaoAtual = localStorage.getItem("visualizacao_atual")          
+        
+        var query = {
+            "conector": "AvantData",
+            "query": "SELECT nome FROM painel_dashboard WHERE visualizacao_pai = "+idVisualizacaoAtual+" AND autor = 'master' ORDER BY posicao;"
+        }
+        $.ajax({
+            url: `/avantapi/sql/selectQuery`,
+            method: 'POST',
+            data: JSON.stringify(query),
+            success: (resposta) => {
+                console.log(resposta)
+                $('#selectInput').html('')
+                $('#selectInput').append(`
+                        <option disabled selected>Select</option>
+                    `);
+                resposta.forEach((painel) => {
+                    $('#selectInput').append(`
+                        <option value="${painel.nome}">${painel.nome}</option>
+                    `);
+                });
+            }
+        });
+    }
+
+    function applyGeral(go = false) {
+        //Faz verificações de campos vazios
+        console.log($('#selectInput').val())
+        if(go == true) {
+            if( $('#selectInput').val() == '' || $('#selectInput').val() == undefined || $('#selectInput').val() == 'Select' || $('#selectInput').val() == null ) {
+                toastr.warning('Campo Select é obrigatório.', 'Atenção', { positionClass: "toast-bottom-right", closeButton: "true" });
+                return
+            }
+        }
+        if( $('#textInput').val() == '' || $('#textInput').val() == undefined || $('#textInput').val() == null ) {
+            toastr.warning('Campo Texto é obrigatório.', 'Atenção', { positionClass: "toast-bottom-right", closeButton: "true" });
+            return
+        }
+        
+        //armazena valores dos inputs em variáveis dentro de um JSON (dados)
+        let dados = {}
+        dados.tokenTEXT = $('#textInput').val()            // corresponde ao id do input de texto
+        dados.tokenNUMBER = $('#numberInput').val()        // corresponde ao id do input de número
+        dados.tokenSELECT = $('#selectInput').val()        // corresponde ao id do input select
+        dados.tokenDATALIST = $('#datalistInput').val()    // corresponde ao id do input datalist
+        dados.tokenDATE = $('#dateTimeInput').val()        // corresponde ao id do input de data e hora
+        dados.tokenCOMMENT = $('#commentInput').val()      // corresponde ao id do input de comentário/textArea
+        
+        //manda criar tokens baseado no JSON enviado
+        applyDashboard(dados);
+        
+        //se o usuário clicou no botão 'pivotear', ele vai ser encaminhado ao painel escolhido
+        if(go == true) {
+            goToPanel($('#selectInput').val());	
+        }
+    }
     
-    }  
- 
-    
-    function clearCamposPainelInt() {
-        // document.getElementById("larguraElementoForm").defaultValue;
+    function clearForm() {
+        //limpa todos os campos dos inputs, todos os tokens e depois manda resecarregar o dashboard
+        
+        toastr.info('Limpando campos.', 'Atenção', { positionClass: "toast-bottom-right", closeButton: "true" });
+        
+        $('#textInput').val('')         // corresponde ao id do input de texto
+        $('#numberInput').val('')       // corresponde ao id do input de número
+        $('#selectInput').val('')       // corresponde ao id do input select
+        $('#datalistInput').val('')     // corresponde ao id do input datalist
+        $('#dateTimeInput').val('')     // corresponde ao id do input de data e hora
+        $('#commentInput').val('')      // corresponde ao id do input de comentário/textArea
                 
         resetDashboard()
-        var limpaTable = $('#tableGeral').DataTable();
-        limpaTable.clear();
-        limpaTable.draw();
-                
     }   
 
 </script>
