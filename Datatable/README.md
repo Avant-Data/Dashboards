@@ -1,4 +1,4 @@
-<h3 align="center">Tabelas de Dados</h3><
+<h3 align="center">Tabelas de Dados</h3>
 
 ---
 
@@ -170,7 +170,7 @@ function getInitialTable() {
         url: '/avantapi/avantData/search/customSearch', // rota da api - Explicada na documentação da API
         method: 'POST', //método de busca - Explicada na documentação da API
         headers: {'cluster': 'AvantData'}, // configuração- Explicada na documentação da API
-        data: JSON.stringify(query), // aqui é inviada a query da pesquisa 
+        data: JSON.stringify(query), // aqui é enviada a query da pesquisa 
         success: (response)=> {               
         
           if(response.hits != undefined && response.hits != null && response.hits != false && response.hits != '') {

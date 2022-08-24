@@ -1,0 +1,129 @@
+<head>
+    <style>
+        .hover-r:hover {
+            background-color: #dceef7;
+        }
+    </style>
+</head>
+
+<div style="font-family: 'Bahnschrift', sans-serif;">
+    
+    <!--Bloco do Título-->
+    <div class="p-2" style="background-color:#38a0a4; color: white;">
+        <h3>Título</h3>
+        <h5>Subtítulo</h5>
+    </div>
+    <br>
+    
+    <!--Bloco dos Inputs-->
+    <div class="row m-3">
+        <div class="col-4">
+               
+            <!-- Bloco de Texto e Número -->
+            <div class="row">
+                
+                <div class="col-6">
+                    <label >Texto</label>
+                    <input type="text" id="consultaMatricula"  class="form-control form-control-sm mb-3">
+                </div>
+               
+                <div class="col-6">
+                    <label >Número</label>
+                    <input type="number" id="consultaNome"  class="form-control form-control-sm mb-3">
+                </div>
+                
+            </div>
+                
+            <!-- Bloco de Select e Datalist -->
+            <div class="row"> 
+                
+                <div class="col-6">
+                    <label>Select</label>
+                    <select id="paineisFormulario" class="browser-default custom-select custom-select-sm">
+                        <option value="" disabled selected>Selecione</option>
+                        <option value="option 1">Opção 1</option>
+                        <option value="option 2">Opção 2</option>
+                        <option value="option 3">Opção 3</option>
+                        <option value="option 4">Opção 4</option>
+                    </select>                       
+                </div>
+                    
+                <div class="col-6">
+                    <label >Datalist</label>
+                    <input list="listAssetsFormScan6" name="nameIp" id="consultaIp" class="form-control form-control-sm mb-3">                       
+                    <datalist id="listAssetsFormScan6">
+                        <option value="option A"></option>
+                        <option value="option B"></option>
+                        <option value="option C"></option>
+                        <option value="option D"></option>
+                    </datalist>
+                </div>
+                
+            </div>
+				
+            <!-- Bloco de Data e Comentário -->
+            <div class="row">
+
+                <div class="col-6">
+                    <label >Data e hora</label>
+                    <input type="datetime-local" id="date_init_form" name="date_init" class="form-control form-control-sm mb-3">
+                </div>
+                
+                <div class="col-6">
+                    <label >Comentário</label>
+                    <textarea id="descricaoQueryTab" class="md-textarea form-control" rows="3" autocomplete="off"></textarea>
+                </div>
+
+            </div>				
+            <br>
+				        
+            <!-- Bloco dos Botões -->
+            <div>
+                <button class="hover-r " style="border-style: solid; border-width: thin; border-radius: 5px; border-color: #546e7a;" onclick="clearCamposPainelInt()">Limpar</button>
+                <button class="hover-r " style="border-style: solid; border-width: thin; border-radius: 5px; border-color: #546e7a;" onclick="applyGeral()">Aplicar</button>
+            </div>
+            
+            <br>
+            <br>
+            <br>
+            <hr />
+            <div class='row'>
+                <div class='col'>
+                    <br>
+                </div>
+            </div>
+            <span id="matricula-selecionado"></span>
+       
+        </div>
+       
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        // resetDashboard()
+        
+    });
+
+    function applyGeral() {
+   
+    }
+    
+    function getPanels() {
+        var idVisualizacaoAtual = localStorage.getItem("visualizacao_atual")
+    
+    }  
+ 
+    
+    function clearCamposPainelInt() {
+        // document.getElementById("larguraElementoForm").defaultValue;
+                
+        resetDashboard()
+        var limpaTable = $('#tableGeral').DataTable();
+        limpaTable.clear();
+        limpaTable.draw();
+                
+    }   
+
+</script>

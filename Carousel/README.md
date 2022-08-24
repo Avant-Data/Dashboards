@@ -31,7 +31,7 @@ Inicialmente, para montar um carousel, é necessário criar um novo cartão do t
 
 ![Criando Cartão](https://i.imgur.com/Sx9hPLC.png)
 
-Ao abrir a modal de edição, cole o código fonte no espaço de texto. Atente-se às dimensões desejadas. Esse modelo está com o padrão de altura em 450px e largura de “grande”.
+Ao abrir a modal de edição, cole o código fonte no espaço de texto. Atente-se às dimensões desejadas. Esse modelo está com o padrão de altura em 430px e largura de “muito grande”.
 
 ## Estrutura <a name = "structure"></a>
 
