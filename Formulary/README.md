@@ -25,6 +25,7 @@
   - [Título](#title)
   - [Texto e Número](#text_number)
   - [Select e Datalist](#select_datalist)
+  - [Data e Comentário](#date_comment)
 - [Precauções](#precaution)
 - [Construído Utilizando](#built_using)
 ## Sobre <a name = "about"></a>
