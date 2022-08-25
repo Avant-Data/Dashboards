@@ -1,11 +1,14 @@
-![Exemplos de Cabeçalho](https://i.imgur.com/0VIjzr1.png)
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=250px height=82px src="https://i.imgur.com/zHVh1RJ.png" alt="Project logo"></a>
+</p>
 <h3 align="center">Cabeçalho</h3>
 
-<!-- <div align="center">
+<div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 
-</div> -->
+</div>
 
 ---
 
@@ -23,6 +26,8 @@
 - [Construído Utilizando](#built_using)
 
 ## Sobre <a name = "about"></a>
+
+![Exemplos de Cabeçalho](https://i.imgur.com/0VIjzr1.png)
 
 Um cabeçalho é uma visualização inicial dentro de um painel do dashboard. Ele traz um contexto sobre o que está sendo posto em gráficos.
 
@@ -58,7 +63,11 @@ Ao alterar a imagem, caso ela fique com proporções erradas ou distorcidas, é 
 
 Caso queira alterar as cores do cabeçalho, é necessário mudar alguns atributos básicos de cor, entre eles o “background-color”, “color” ou “border-color”. Na linguagem HTML as faixas de cores podem ser descritas de três formas: usando padrão RGB, padrão Hexadecimal ou nomeando cores básicas em inglês.
 
-![Tipos de cores](https://i.imgur.com/7tWsz2Y.png)
+```
+color=" blue ;"         --> Cores básicas
+color=" #38a0a3 ;"      --> Formato Hexadecimal
+color=" 255 250 250 ;"  --> Formato RGB
+```
 
 É importante saber qual elemento do código correspone a qual descrição de cor e como isso será traduzido na visualização final. Vale ressaltar que os textos também tem suas cores estabelecidas.
 
@@ -76,8 +85,6 @@ Existe a possibilidade de criar um cabeçalho em um painel onde já tenha gráfi
 O modelo disponibilizado pelo código fonte não conta com nenhum elemento HTML com atributo "id" e por isso, pode-se usar esse cabeçalho em quantos paineis quiser, mesmo dentro de uma mesma visualização.
 
 Entretanto, caso o usuário precise adicionar um atributo "id", ele deve ser ÚNICO para cada elemento, em cada cabeçalho da mesma visualização, caso contrário ele pode ter problemas para funcionar gerando conflitos na leitura do código pelo navegador.
-
-
 
 
 ## Construído Utilizando <a name = "built_using"></a>
