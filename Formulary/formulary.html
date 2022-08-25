@@ -1,4 +1,5 @@
 <head>
+    <!-- estilização dos botões -->
     <style>
         .hover-g:hover {
             background-color: #dcd516 !important;
@@ -12,7 +13,7 @@
     </style>
 </head>
 
-<div style="font-family: 'Bahnschrift', sans-serif;">
+<div style="overflow:auto; height: 500px; font-family: 'Bahnschrift', sans-serif;">
     
     <!--Bloco do Título-->
     <div class="p-2" style="background-color:#38a0a4; color: white;">
@@ -45,22 +46,22 @@
                 <div class="col-6">
                     <label>Select</label>
                     <select id="selectInput" class="browser-default custom-select custom-select-sm">
-                        <option value="" disabled selected>Selecione</option>
-                        <option value="option 1">Opção 1</option>
-                        <option value="option 2">Opção 2</option>
-                        <option value="option 3">Opção 3</option>
-                        <option value="option 4">Opção 4</option>
+                        <option disabled selected>Selecione</option>
+                        <option>Opção 1</option>
+                        <option>Opção 2</option>
+                        <option>Opção 3</option>
+                        <option>Opção 4</option>
                     </select>                       
                 </div>
                     
                 <div class="col-6">
                     <label >Datalist</label>
-                    <input list="listAssetsFormScan6" id="datalistInput" class="form-control form-control-sm mb-3">                       
-                    <datalist id="listAssetsFormScan6">
-                        <option value="option A"></option>
-                        <option value="option B"></option>
-                        <option value="option C"></option>
-                        <option value="option D"></option>
+                    <input list="list" id="datalistInput" class="form-control form-control-sm mb-3">                       
+                    <datalist id="list">
+                        <option>Opção A</option>
+                        <option>Opção B</option>
+                        <option>Opção C</option>
+                        <option>Opção D</option>
                     </datalist>
                 </div>
                 
