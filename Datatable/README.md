@@ -145,7 +145,7 @@ function takeExport(type) {
 
 Para fazer a pesquisa, é utilizado uma função JavaScript, dentro dela é criado uma requisição Ajax que vai fazer uma busca em algum banco de dados e trazer uma respota. Dentro do Ajax, tem uma cláusula de sucesso, onde serão montadas as linhas da tabela com os dados do resultado da pesquisa.
 
-Nesse modelo, utilizamos uma busca dentro de um dos índices mais usados do AvantData, o AvantAgent. Como os dados dos indices no nosso sistema é, por padrão, indexado dentro de um banco de dados não relacional, utilizamos a nossa [API](https://avantapi.avantsec.com.br/) para fazer uma busca atravez do Custom Search (rota da nosa api em que mandamos uma query de pesquisa para o ElasticSearch e ela retorna o resultado).
+Nesse modelo, utilizamos uma busca dentro de um dos índices mais usados do AvantData, o AvantAgent. Como os dados dos indices no nosso sistema é, por padrão, indexado dentro de um banco de dados não relacional, utilizamos a [AvantAPI](https://avantapi.avantsec.com.br/) para fazer uma busca atravez do Custom Search (rota da nosa api em que mandamos uma query de pesquisa para o ElasticSearch e ela retorna o resultado).
 
 ```js
 $(document).ready(function () {
