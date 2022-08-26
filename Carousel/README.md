@@ -9,7 +9,7 @@
 ## Índice
 
 - [Sobre](#about)
-- [Començando](#starting)
+- [Começando](#starting)
 - [Estrutura](#structure)
 - [Customizando imagens](#images)
 - [Precauções](#precaution)
