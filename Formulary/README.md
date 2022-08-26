@@ -20,7 +20,7 @@
 ## Índice
 
 - [Sobre](#about)
-- [Començando](#starting)
+- [Começando](#starting)
 - [Estrutura](#structure)
   - [Título](#title)
   - [Texto e Número](#text_number)
@@ -39,19 +39,19 @@ Nesse modelo, a estrutura será montada em HTML com [Bootstrap](https://getboots
 ```
 Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboard do AvantData, visto que depende de bibliotecas ja instaladas no programa.
 ```
-## Començando <a name = "starting"></a>
+## Começando <a name = "starting"></a>
 
 Inicialmente, para montar uma tabela, é necessário criar um novo cartão do tipo “formulário” através do menu de contexto.
 
 ![Criando Cartão](https://i.imgur.com/Sx9hPLC.png)
 
-Ao abrir a modal de edição, cole o código fonte no espaço de texto. Atente-se às dimensões desejadas. Esse modelo está com o padrão de altura em 500px e largura de “grande”, mas fica a critério do usuário fazer ajustes nesses valores.
+Ao abrir a modal de edição, cole o código fonte no espaço de texto. Atente-se às dimensões desejadas. Esse modelo está com o padrão de altura em 500px e largura de “grande”, mas fica a critério do usuário ajustar esses valores.
 
 ## Estrutura <a name = "structure"></a>
 
 O código fonte sugerido traz um modelo genérico, com uma variedade de tipos de inputs e botões, justamente para trazer opções ao usuário final que poderá adaptar toda essa variedade para um contexto de uso individual. Uma das utilizações mais comuns é a criação de TOKENS e pivoteamento para um outro painel, exemplos que estão presentes nesse modelo.
 
-A estrutura do código é dividida em blocos para facilitar o entendimento do que é feito em cada parte. Antes de começar a montagem do esqueleto do formulário, é criado um elemento de 'style' (estilo) que traz uma característica de 'hover' aos botões. Hover é a mudança de estilo ao passar o mouse por cima do elemento. Nesse caso, mudamos a cor de fundo de cada botão para um tom levemente mais claro que a cor padrão.
+A estrutura do código é dividida em blocos para facilitar o entendimento do que é feito em cada parte. Antes de começar a montagem do esqueleto do formulário, é criado um elemento de 'style' (estilo) que traz uma característica de 'hover' aos botões. 'Hover' é a mudança de estilo ao passar o mouse por cima do elemento. Nesse caso, mudamos a cor de fundo de cada botão para um tom levemente mais claro que a cor padrão.
 
 ```html
 <head>
@@ -71,7 +71,7 @@ A estrutura do código é dividida em blocos para facilitar o entendimento do qu
 ```
 ### Título <a name = "title"></a>
 
-Consiste na parte mais simples e intuitiva do código fonte. É possivel alterar os valores de título e subtítulo substituindo respectivamente os textos dentro dos elementos 'h3' e 'h5'. O usuário pode acrescentar outra linha de texto para colocar outro elemento a ser mostrado desse bloco, utilizando as tags 'h6', 'h5', 'h4', 'h3', 'h2', ou 'h1', sendo a 'h1' a maior e a 'h6' a menor.
+Consiste na parte mais simples e intuitiva do código fonte. É possível alterar os valores de título e subtítulo substituindo respectivamente os textos dentro dos elementos 'h3' e 'h5'. O usuário pode acrescentar outra linha de texto para colocar outro elemento a ser mostrado desse bloco, utilizando as tags 'h6', 'h5', 'h4', 'h3', 'h2', ou 'h1', sendo a 'h1' a maior e a 'h6' a menor.
 ```html
 <!--Bloco do Título-->
 <div class="p-2" style="background-color:#38a0a4; color: white;">
@@ -109,7 +109,7 @@ Quando for do tipo 'number', só será possivel digitar números. O campo vem co
 
 ### Select e Datalist <a name = "select_datalist"></a>
 
-Nesse bloco são criados os dois próximos campos de input. Para alterar o nome de cada campo, basta substituir o texto dentro do elemento 'label' de cada umd deles. A grande diferença entre esses dois campos é que o campo select pode ser preenchido somente pelas opções, e o campo datalist tem um espaço de digitação, onde o usuário pode digitar o que quiser e conforme vai digitando, vai também filtrando as opções, além de poder escolher uma opçãod esde o início. Resumnindo, o campo do tipo datalist funciona como um cruzamento do input tipo texto e um select.
+Nesse bloco são criados os dois próximos campos de input. Para alterar o nome de cada campo, basta substituir o texto dentro do elemento 'label' de cada umd deles. A grande diferença entre esses dois campos é que o campo select pode ser preenchido somente pelas opções, e o campo datalist tem um espaço de digitação, onde o usuário pode digitar o que quiser e conforme vai digitando, vai também filtrando as opções, além de poder escolher uma opção desde o início. Resumindo, o campo do tipo datalist funciona como um cruzamento do input tipo texto e um select.
 
 ```html   
    <div class="row"> 
@@ -139,16 +139,16 @@ Nesse bloco são criados os dois próximos campos de input. Para alterar o nome 
 </div>
 ```
 
-O campo do tipo Select pode ser preenchido apenas escolhendo alguma das opções. Vale observar que o ele não é um elemento do tipo 'input' e sim tem seu proprio elemento 'select', dentro dele varios elementos de opção (options) e cada uma com o texto que dará nome a opção. É preferível colocar sempre uma primeira opção com texto de "Selecione" e atributos 'disabled selected' isso vai criar uma opção que não pode ser ecolhida, mas o texto dela fica visível ao usuário antes de selecionar algum ítem.
-Para adicionar ou removar opções, basta acrecentar ou apagar elementos de 'option' dentro do padrão, custozimando os nomes de cada uma.
+O campo do tipo Select pode ser preenchido apenas escolhendo alguma das opções. Vale observar que ele não é um elemento do tipo 'input' e sim tem seu proprio elemento 'select', dentro dele vários elementos de opção (options). É preferível adicionar sempre uma primeira opção com texto de "Selecione" e atributos 'disabled selected' isso vai criar uma opção que não pode ser ecolhida, mas o texto dela fica visível ao usuário antes de selecionar algum ítem.
+Para adicionar ou removar opções, basta acrecentar ou apagar elementos de 'option' dentro do padrão, customizando os nomes de cada uma.
 
-O campo do tipo Datalist pode ser preenchido com texto, e conforme vai digitando, vai também filtrando as opções que tem. É formado por um 'input' que não tem um atributo 'type' e sim um 'list' que será preenchido com o 'id' do elemento 'datalist' logo abaixo. Dentro do elemento datalist vão ser adicionadas as 'options'. 
+O campo do tipo Datalist pode ser preenchido com texto, e conforme vai digitando, vai também filtrando as opções que tem. É formado por um 'input' que não tem um atributo 'type' e sim um 'list' que será preenchido com o 'id' do elemento 'datalist' logo abaixo. Dentro do elemento 'datalist' vão ser adicionadas as 'options'. 
 
 ![select datalist](https://i.imgur.com/UKIwLuy.png)
 
 ### Data e Comentário <a name = "date_comment"></a>
 
-Nesse bloco são criados os dois últimos campos de input desse modelo. Para definir o tipo do campo, deve-se observar o atributo 'type' dentro do elemento 'input'. Para alterar o nome de cada campo, basta substituir o texto dentro do elemento 'label' de cada umd deles.
+Nesse bloco são criados os dois últimos campos de input desse modelo. Para definir o tipo do campo, deve-se observar o atributo 'type' dentro do elemento 'input'. Para alterar o nome de cada campo, basta substituir o texto dentro do elemento 'label' de cada um deles.
 
 ```html
 <!-- Bloco de Data e Comentário -->
@@ -166,12 +166,46 @@ Nesse bloco são criados os dois últimos campos de input desse modelo. Para def
 
 </div>
 ```
-O campo Data e Hora é um input com atributo 'type' com valor 'datetime-local'. Ele deve ser preenchido por valores válidos de data e hora. O navegador vai interpretar esse input e adicionar um botão de calendário na lateral do campo, onde o usuário pode escolher a data e hora atravez de cliques. Geralmente é usado para marcação de compromissos, datas de aniversário ou similares.
+O campo Data e Hora é um input com atributo 'type' com valor 'datetime-local'. Ele deve ser preenchido por valores válidos de data e hora. O navegador vai interpretar esse input e adicionar um botão de calendário na lateral do campo, onde o usuário pode escolher a data e hora por meio de cliques. Geralmente é usado para marcação de compromissos, datas de aniversário ou similares.
 
-O campo Comentário não é feito atravez de um elemento 'input' e sim 'textarea'. Nele é possivel escrever qualquer tipo de texto, muito semelhante ao input tipo texto, a diferênça é que esse é utilizado para textos longos, como comentários com diversas linhas, relatórios, letras de músicas entre outros. A margem desse campo é alterável, sendo possivel arrastar para baixo e aumentar o tamanho desse elemento com o mouse.
+O campo Comentário não é feito atravez de um elemento 'input' e sim 'textarea'. Nele é possivel escrever qualquer tipo de texto, muito semelhante ao input tipo texto, a diferênça é que esse é utilizado para textos longos, como comentários com diversas linhas, relatórios, letras de músicas entre outros. A margem desse campo é alterável, sendo possível arrastar para baixo e aumentar o tamanho desse elemento com o mouse.
 
 ![data e comentário](https://i.imgur.com/bm33dir.png)
 
+### Botões <a name = "buttons"></a>
+
+O último bloco é composto pela montagem dos botões, cada um criado a partir de de um elemento HTML 'button'. Eles contém um atributo 'onclick' com o nome de uma função que está montada em JavaScript, isso significa que quando o usuário clicar em cada botão vai executar essa função e ativar o efeito dela. É possível alterar o nome dos botões substituindo o texto.
+
+O usuário pode alterar a função do botão, mudando o valor do atributo 'onclick' para o nome da função desejada; pode acrescentar outro botão criando outro elemento 'button' seguindo o padrão dos já existentes ou excluir algum deles apenas apagando o elemento no código fonte.
+
+```html
+<!-- Bloco dos Botões  -->
+<div class="row justify-content-md-center">
+    
+    <button class="col-2 hover-o mr-1 btn p-2" 
+    style="background-color: #e96817; border-color: white; color:white;;border-style: solid; border-width: thin; border-radius: 5px;"
+    onclick="clearForm()">Limpar</button>
+    
+    <button class="col-2 hover-b ml-1 mr-1 btn p-2" 
+    style="background-color: #38a0a4; border-color: white; color:white;border-style: solid; border-width: thin; border-radius: 5px;" 
+    onclick="applyGeral()">Token</button>
+    
+    <button class="col-2 hover-g ml-1 btn p-2" 
+    style="background-color: #bab513; border-color: white; color:white;border-style: solid; border-width: thin; border-radius: 5px;" 
+    onclick="applyGeral(true)">Pivotear</button>
+    
+</div>
+```
+
+No modelo de exemplo foram criados 3 botões. O primeiro (Limpar) ao ser clicado vai apagar todas as informações preenchidas nos inputs, vai apagar todos os tokens que foram criados e recarregar os gráficos daquele painel.
+
+O segundo botão (Token) pega todas as informações que foram preenchidas e cria um token para cada uma delas. Token é uma informação armazenada no navegador. Para ver essa informações, é necessário inspecionar a página (F12) e vai aparecer uma tela de configurações. Na aba de 'Aplicação' (o nome das abas pode variar de acordo com o idioma ou com o navegador usado) terá uma opção de 'session storage' com o endereço do AvantData, ao clicar nesse endereço vai abrir uma área com chave (key) e valor (value), essas são as informações de token.
+
+O campo 'key' é o nome do token e o campo ' value' é a informação que ele armazena. Ao clicar no segundo botão do formulário, todas as informações que foram preenchidas nos inputs serão enviadas como 'value' dos tokens e as 'keys' ja foram previamente definidas na função JavaScript.
+
+![tokens sinalizados](https://i.imgur.com/tRGoVgN.png)
+
+ Nesse modelo, existe uma função '[getPanels()](#índice)' (JavaScript) que é executada assim que o dashboard é carregado e vai pesquisar quais os paineis existem nessa visualização e criar uma opção para cada uma delas substituindo as opções do campo select com o nome de cada painel. Dessa forma, se existirem 3 paineis, serão criadas 3 opções no campo select com seus respectivos nomes. O terceiro botão (Pivotear) também vai criar os tokens exatamente como no botão mensionado anteriormente, porém também vai encaminhar o ususário para o painel escolhido pelo campo Select.
 ## Precauções <a name = "precaution"></a>
 
 O modelo disponibilizado pelo código fonte conta com alguns elementos HTML com atributo "id" e por isso, para usar em mais de um painel, é necessário alterar todos os atributos "id" e todos os lugares onde ele é utilizado.
