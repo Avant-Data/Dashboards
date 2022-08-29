@@ -26,6 +26,10 @@
   - [Texto e Número](#text_number)
   - [Select e Datalist](#select_datalist)
   - [Data e Comentário](#date_comment)
+  - [Botões](#buttons)
+- [Funções](#functions)
+    - [Pesquisa](#search)
+    - [Token](#token)
 - [Precauções](#precaution)
 - [Construído Utilizando](#built_using)
 ## Sobre <a name = "about"></a>
@@ -206,6 +210,97 @@ O campo 'key' é o nome do token e o campo ' value' é a informação que ele ar
 ![tokens sinalizados](https://i.imgur.com/tRGoVgN.png)
 
  Nesse modelo, existe uma função '[getPanels()]()' (JavaScript) que é executada assim que o dashboard é carregado e vai pesquisar quais os paineis existem nessa visualização e criar uma opção para cada uma delas substituindo as opções do campo select com o nome de cada painel. Dessa forma, se existirem 3 paineis, serão criadas 3 opções no campo select com seus respectivos nomes. O terceiro botão (Pivotear) também vai criar os tokens exatamente como no botão mensionado anteriormente, porém também vai encaminhar o ususário para o painel escolhido pelo campo Select.
+
+## Funções <a name = "functions"></a>
+
+Esse modelo é traz três funções para o funcionamento geral e que podem ser customizadas de acordo com as necessidades do usuário. É válido ressaltar que esse exemplo não exclui a possibilidade de serem adiconadas outras funções, visto que o código está dentro da estrutura geral do AvantData, o que permite herdar diversas bibliotecas já usadas no sistema.
+
+### Pesquisa <a name = "search"></a>
+
+A primeira função utilizada é nominada 'getPanels', criada em linguagem JavaScript. A utilidade dela é buscar (atravez de uma pesquisa) todos os paineis da visualização atual e criar uma opção para cada um deles dentro do campo "select'
+
+Para fazer a pesquisa, é utilizado uma função JavaScript, dentro dela é criado uma requisição Ajax que vai fazer uma busca em algum banco de dados e trazer uma respota. Dentro do Ajax, tem uma cláusula de sucesso, onde serão montadas as opções com os dados do resultado da pesquisa.
+
+Nesse modelo, utilizamos uma busca atravez de uma rota [AvantAPI](https://avantapi.avantsec.com.br/) interna que serve justamente para se conectar a um banco de dados e enviar um texto de pesquisa sql.
+
+```js
+$(document).ready(function () {        
+    getPanels()    
+});
+
+function getPanels() {
+    var idVisualizacaoAtual = localStorage.getItem("visualizacao_atual")          
+    
+    var query = {
+        "conector": "AvantData",
+        "query": "SELECT nome FROM painel_dashboard WHERE visualizacao_pai = "+idVisualizacaoAtual+" AND autor = 'master' ORDER BY posicao;"
+    }
+    $.ajax({
+        url: `/avantapi/sql/selectQuery`,
+        method: 'POST',
+        data: JSON.stringify(query),
+        success: (resposta) => {
+            console.log(resposta)
+            $('#selectInput').html('')
+            $('#selectInput').append(`
+                    <option disabled selected>Select</option>
+                `);
+            resposta.forEach((painel) => {
+                $('#selectInput').append(`
+                    <option value="${painel.nome}">${painel.nome}</option>
+                `);
+            });
+        }
+    });
+}
+```
+
+O usuário pode alterar essa pesquisa utilizando a busca que desejar, ficando atento ao formato em que o resultado vai chegar para poder navegar poe ele e usar os valores corretamente. 'Ajax' é um tipo de codificação para fazer uma requisição. Nele são passados dados de configuração para se conectar ao destino e fazer uma busca. Nesse caso, o resultado dessa busca está sendo transformado em 'opções' do campo 'Select' mas o usuário pode usar essa mesma estrutura para qualquer outra utilidade, desde inserir dados em algum banco, [montar tabelas](https://github.com/Avant-Data/Dashboards/tree/master/Datatable), adicionar [menus de contexto](https://github.com/Avant-Data/Dashboards/tree/master/ContextMenu) entre outros.
+
+Importante notar que essa função aparece dentro de uma extrutura "$(document).ready()" que significa que assim que o navegar terminar de interpretar o código fonte, vai executar a função e ativar seu efeito.
+
+![Opções select](https://i.imgur.com/c3E2WX5.png)
+
+### Token <a name = "token"></a>
+
+A segunda função utilizada é nominada 'applyGeral', criada em linguagem JavaScript. A utilidade dela é resgatar os dados que foram preenchidos pelo usuário em cada campo do formulário e criar um token para cada um. É iniciada com o clique nos botões 'Token' (onde vai apenas criar os tokens) e 'Pivotear' (onde vai reencaminhar o usúario para o paniel escolhido pela opção 'Select')
+
+```js
+function applyGeral(go = false) {
+    //Faz verificações de campos vazios
+    console.log($('#selectInput').val())
+    if(go == true) {
+        if( $('#selectInput').val() == '' || $('#selectInput').val() == undefined || $('#selectInput').val() == 'Select' || $('#selectInput').val() == null ) {
+            toastr.warning('Campo Select é obrigatório.', 'Atenção', { positionClass: "toast-bottom-right", closeButton: "true" });
+            return
+        }
+    }
+    if( $('#textInput').val() == '' || $('#textInput').val() == undefined || $('#textInput').val() == null ) {
+        toastr.warning('Campo Texto é obrigatório.', 'Atenção', { positionClass: "toast-bottom-right", closeButton: "true" });
+        return
+    }
+    
+    //armazena valores dos inputs em variáveis dentro de um JSON (dados)
+    let dados = {}
+    dados.tokenTEXT = $('#textInput').val()            // corresponde ao id do input de texto
+    dados.tokenNUMBER = $('#numberInput').val()        // corresponde ao id do input de número
+    dados.tokenSELECT = $('#selectInput').val()        // corresponde ao id do input select
+    dados.tokenDATALIST = $('#datalistInput').val()    // corresponde ao id do input datalist
+    dados.tokenDATE = $('#dateTimeInput').val()        // corresponde ao id do input de data e hora
+    dados.tokenCOMMENT = $('#commentInput').val()      // corresponde ao id do input de comentário/textArea
+    
+    //manda criar tokens baseado no JSON enviado
+    applyDashboard(dados);
+    
+    //se o usuário clicou no botão 'pivotear', ele vai ser encaminhado ao painel escolhido
+    if(go == true) {
+        goToPanel($('#selectInput').val());	
+    }
+}
+```
+
+Observa-se que existem algumas cláusulas "toastr" dentro do código. Essa é a forma de códificar uma caixa de mensagem que será exibida em determinadas condições. A caixa da mensagem pode ser de aviso (warning) que terá uma cor laranja, erro (error) que será vermelha, informacional (info) que será azul ou sucesso (success) que será verde.
+
 ## Precauções <a name = "precaution"></a>
 
 O modelo disponibilizado pelo código fonte conta com alguns elementos HTML com atributo "id" e por isso, para usar em mais de um painel, é necessário alterar todos os atributos "id" e todos os lugares onde ele é utilizado.
@@ -213,6 +308,7 @@ O modelo disponibilizado pelo código fonte conta com alguns elementos HTML com 
 Os atributos "id" são uma identidade ÚNICA de cada elemento, caso contrário ele pode ter problemas para funcionar gerando conflitos na leitura do código pelo navegador.
 
 O mesmo acontece com os nomes de cada 'function' JavaScript, cada nome deve ser único para cada cópia desse modelo em uma visualização, tanto na criação, quando na hora de executar.
+
 ## Construído Utilizando <a name = "built_using"></a>
 
 - [AvantData](https://www.avantdata.com.br/) - Plataforma de análise, correlacionamento e gestão de dados em redes corporativas
