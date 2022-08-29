@@ -204,11 +204,11 @@ O usuário pode alterar a função do botão, mudando o valor do atributo 'oncli
 
 No modelo de exemplo foram criados 3 botões. O primeiro (Limpar) ao ser clicado vai apagar todas as informações preenchidas nos inputs, vai apagar todos os tokens que foram criados e recarregar os gráficos daquele painel.
 
-O segundo botão (Token) pega todas as informações que foram preenchidas e cria um token para cada uma delas. Token é uma informação armazenada no navegador. Para ver essa informações, é necessário inspecionar a página (F12) e vai aparecer uma tela de configurações. Na aba de 'Aplicação' (o nome das abas pode variar de acordo com o idioma ou com o navegador usado) terá uma opção de 'session storage' com o endereço do AvantData, ao clicar nesse endereço vai abrir uma área com chave (key) e valor (value), essas são as informações de token.
+O segundo botão (Token) pega todas as informações que foram preenchidas e cria um token para cada uma delas. Token é uma informação armazenada no navegador. Para ver essa informações, é necessário inspecionar a página (F12) e vai aparecer uma tela de configurações. Na aba de 'Aplicação' (o nome das abas pode variar de acordo com o idioma ou com o navegador usado) terá uma opção de 'session storage' com o endereço do AvantData, ao clicar nesse endereço vai abrir uma área com chave (key) e valor (value), essas são as informações de token.<p name = "session_storage"></p>
 
 O campo 'key' é o nome do token e o campo ' value' é a informação que ele armazena. Ao clicar no segundo botão do formulário, todas as informações que foram preenchidas nos inputs serão enviadas como 'value' dos tokens e as 'keys' ja foram previamente definidas na função JavaScript.
 
-![tokens sinalizados](https://i.imgur.com/tRGoVgN.png)<p name = "session_storage"></p>
+![tokens sinalizados](https://i.imgur.com/tRGoVgN.png)
 
  Nesse modelo, existe uma função '[getPanels()]()' (JavaScript) que é executada assim que o dashboard é carregado e vai pesquisar quais os paineis existem nessa visualização e criar uma opção para cada uma delas substituindo as opções do campo select com o nome de cada painel. Dessa forma, se existirem 3 paineis, serão criadas 3 opções no campo select com seus respectivos nomes. O terceiro botão (Pivotear) também vai criar os tokens exatamente como no botão mensionado anteriormente, porém também vai encaminhar o ususário para o painel escolhido pelo campo Select.
 
