@@ -30,6 +30,7 @@
 - [Funções](#functions)
     - [Pesquisa](#search)
     - [Token](#token)
+    - [Limpar](#clean)
 - [Precauções](#precaution)
 - [Construído Utilizando](#built_using)
 ## Sobre <a name = "about"></a>
@@ -207,7 +208,7 @@ O segundo botão (Token) pega todas as informações que foram preenchidas e cri
 
 O campo 'key' é o nome do token e o campo ' value' é a informação que ele armazena. Ao clicar no segundo botão do formulário, todas as informações que foram preenchidas nos inputs serão enviadas como 'value' dos tokens e as 'keys' ja foram previamente definidas na função JavaScript.
 
-![tokens sinalizados](https://i.imgur.com/tRGoVgN.png)
+![tokens sinalizados](https://i.imgur.com/tRGoVgN.png)<p name = "session_storage"></p>
 
  Nesse modelo, existe uma função '[getPanels()]()' (JavaScript) que é executada assim que o dashboard é carregado e vai pesquisar quais os paineis existem nessa visualização e criar uma opção para cada uma delas substituindo as opções do campo select com o nome de cada painel. Dessa forma, se existirem 3 paineis, serão criadas 3 opções no campo select com seus respectivos nomes. O terceiro botão (Pivotear) também vai criar os tokens exatamente como no botão mensionado anteriormente, porém também vai encaminhar o ususário para o painel escolhido pelo campo Select.
 
@@ -300,6 +301,18 @@ function applyGeral(go = false) {
 ```
 
 Observa-se que existem algumas cláusulas "toastr" dentro do código. Essa é a forma de códificar uma caixa de mensagem que será exibida em determinadas condições. A caixa da mensagem pode ser de aviso (warning) que terá uma cor laranja, erro (error) que será vermelha, informacional (info) que será azul ou sucesso (success) que será verde.
+
+Os tokens ficam armazenados na aba atual do navegador e podem ser resgatados mesmo que o usuário mude o painel ou abra outra visualização do dashboard. É uma forma eficiente de passar dados entre os paineis sem rpecisar refazer pesquisas e também aplicar dados de um formulário cartões tipo gráfico (os gráficos possuem em sua criação a opção de resgatar valores de token). Ao pivotear (reencaminhar o usuário para outro painel), os gráficos daquele painel vão se atualizar e caso algum deles faça alguma busca por token, os dados serão atualizados.
+
+Para resgatar os valores de um token utiliza-se o padrão conforme o exemplo abaixo, onde 'token_key' é o nome da chave do íten do [session storage](#session_storage).
+
+```js
+sessionStorage.getItem('token_key');
+```
+
+### Limpar <a name = "clean"></a>
+
+ segunda função utilizada é nominada 'clearForm', criada em linguagem JavaScript. A utilidade dela é apagar os dados dos campos que foram preenchidos, apagar todos os tokens e recarregar os gráficos que possam estar presentes nesse painel. É iniciada com o clique no botão 'Limpar'.
 
 ## Precauções <a name = "precaution"></a>
 
