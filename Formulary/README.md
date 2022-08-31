@@ -302,7 +302,7 @@ function applyGeral(go = false) {
 
 Observa-se que existem algumas cláusulas "toastr" dentro do código. Essa é a forma de códificar uma caixa de mensagem que será exibida em determinadas condições. A caixa da mensagem pode ser de aviso (warning) que terá uma cor laranja, erro (error) que será vermelha, informacional (info) que será azul ou sucesso (success) que será verde.
 
-Os tokens ficam armazenados na aba atual do navegador e podem ser resgatados mesmo que o usuário mude o painel ou abra outra visualização do dashboard. É uma forma eficiente de passar dados entre os paineis sem rpecisar refazer pesquisas e também aplicar dados de um formulário cartões tipo gráfico (os gráficos possuem em sua criação a opção de resgatar valores de token). Ao pivotear (reencaminhar o usuário para outro painel), os gráficos daquele painel vão se atualizar e caso algum deles faça alguma busca por token, os dados serão atualizados.
+Os tokens ficam armazenados na aba atual do navegador e podem ser resgatados mesmo que o usuário mude o painel ou abra outra visualização do dashboard. É uma forma eficiente de passar dados entre os paineis sem precisar refazer pesquisas e também aplicar dados de um formulário a cartões tipo gráfico (os gráficos possuem em sua criação a opção de resgatar valores de token). Ao pivotear (reencaminhar o usuário para outro painel), os gráficos daquele painel vão se atualizar e caso algum deles faça alguma busca por token, os dados serão atualizados.
 
 Para resgatar os valores de um token utiliza-se o padrão conforme o exemplo abaixo, onde 'token_key' é o nome da chave do íten do [session storage](#session_storage).
 
