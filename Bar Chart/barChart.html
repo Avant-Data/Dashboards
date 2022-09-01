@@ -4,49 +4,23 @@
 
 <script>
 
-    $(document).ready(function () {
-        createChart()   
+    $(document).ready(function () {  
+        // Ao carregar a página inicia a pesquisa que criará o gráfico      
+        searchData()
     }); 
     
-    function createChart() {
-        
-        // Variável que agrupa todos os elementos que vão aparecer no gráfico em uma lista
-        // Cada ítem da lista contém uma 'label' e um 'value'
-        // 'label' é o nome que o elemento vai receber no gráfico (rótulo)
-        // 'value' é a quantidade
-        let arrayItens = [
-            {
-                label: "Elemento A",
-                value: 9
-            },{
-                label: "Elemento B",
-                value: 8
-            },{
-                label: "Elemento C",
-                value: 7
-            },{
-                label: "Elemento D",
-                value: 6
-            },{
-                label: "Elemento E",
-                value: 5
-            },{
-                label: "Elemento F",
-                value: 4
-            },{
-                label: "Elemento G",
-                value: 3
-            }
-        ]
-        
-        
+    function createChart(arrayItens) {
+        // arrayItens é a lista ja formatada transmitida pelo resultado da pesquisa
+                
         //Organiza os ítens do gráfico do maior 'value' para o menor
         arrayItens.sort(function(a, b) {
           return b.value - a.value;
         });        
         
+        //Define a quantidade máxima de ítens exibidos no gráfico, nesse caso: 15
+        arrSelecao = array.slice(0, 15);
         
-        //Chama a biblioteca para projetar o gráfico dentro do elemento HTML indicado por id em "renderAt"
+        //Executa a biblioteca para projetar o gráfico dentro do elemento HTML indicado pelo id em "renderAt"
     	FusionCharts.ready(function(){
             var chartObj = new FusionCharts({
                 type: 'bar2d',
@@ -56,7 +30,7 @@
                 dataFormat: 'json',
                 dataSource: {
                     "chart": {
-                        "theme": "fusion",
+                        "theme": "fusion", // Temas disponíveis: "fusion", "ocean", "candy", "carbon", "umber", "zune" e "gammel"
                         "caption": "Título",
                         "subCaption": "Subtítulo",
                         "yAxisName": "Linha inferior"                       
@@ -66,5 +40,57 @@
             });
 			chartObj.render();
         });
+    }
+    
+    function searchData() {        
+        // query de pesquisa
+        const queryDet = {
+            method: 'POST',
+            headers: {'cluster': 'AvantData'},
+            body: JSON.stringify({
+                index: 'AvantAgent',
+                size: 0,
+                body: {
+                    query: {
+                        query_string: {
+                            query: `agentHostName: *`
+                        }
+                    },
+                    aggs: {
+                        aggsItens: {
+                            terms: {
+                                "field": `agentHostName.keyword`,
+                                "size": 5000
+                            }
+                        }
+                    }
+                }
+            })
+        };
+        // Faz a pesquisa
+        return fetch('/avantapi/avantData/search/customSearch', queryDet)
+            .then(responseList => responseList.json())
+            .then(responseList => {
+               
+                let arrayChart =[]
+                if(responseList.aggregations) {
+                    if(responseList.aggregations.aggsItens) {                        
+                        let buckets = responseList.aggregations.aggsItens.buckets
+                        
+                        // Para cada dado da pesquisa, cria um item para a lista que será enviada para o chart, utilizando 'label' e 'value'
+                        for(i in buckets) {
+                            arrayChart.push({
+                                label: buckets[i].key,
+                                value: buckets[i].doc_count
+                            })
+                        }
+                    }
+                }
+                return arrayChart
+            })
+            .then(arrayChart =>{
+                // Executa a função que cria o gráfico transmitindo a lista pronta
+                createChart(arrayChart)
+            })
     }
 </script>
