@@ -30,7 +30,7 @@
 
 Um gráfico de barras é uma representação visual de comparação entre elementos. Na vertical à esquerda, aparece o nome dos ítens, logo a frente uma coluna deitada indica o valor daquele elemento (indicamos na parte de baixo do gráfico). Ao passar o mouse sobre cada uma das barras, ela é ressaltada aparecendo uma pequena janela contendo o nome e valor do campo específico.
 
-Nesse modelo, a estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de gráficos chamada [Fusion Charts](). No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
+Nesse modelo, a estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de gráficos chamada Fusion Charts. No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
 
 Esse modelo é específico para usuários que queiram montar utilizando a estrutura em formulário, visto que esse tipo de gráfico pode ser facilmente gerado usando a criação dinâmica de gráficos no menu de contexto, ao invéz de criar um novo 'formulário', escolhendo "cartão'.
 
