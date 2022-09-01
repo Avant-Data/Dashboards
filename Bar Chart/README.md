@@ -29,7 +29,7 @@
 
 ![Exemplos de Gráfico de barras](https://i.imgur.com/EkGRGMo.png)
 
-Um gráfico de barras é uma representação visual de comparação entre elementos. Na vertical à esquerda, aparece o nome dos ítens, logo a frente uma coluna deitada indica o valor daquele elemento (indicamos na parte de baixo do gráfico). Ao passar o mouse sobre cada uma das barras, ela é ressaltada aparecendo uma pequena janela contendo o nome e valor do campo específico.
+Um gráfico de barras é uma representação visual de comparação entre elementos. Na vertical à esquerda, aparece o nome dos ítens, logo a frente uma coluna deitada indica o valor daquele elemento (indicados na parte de baixo do gráfico). Ao passar o mouse sobre cada barra, ela é ressaltada aparecendo uma pequena janela contendo o nome e valor do campo específico.
 
 Nesse modelo, a estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de gráficos chamada Fusion Charts. No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
 
@@ -126,7 +126,7 @@ No modelo apresentado, a lista (array) é feita dinamicamente por uma pesquisa e
 
 Nesse exemplo a ideia do gráfico é comparar os usuários de uma rede com a quantidade de logs gerados e indexados no AvantData atravez do AvantAgent.
 
-Para fazer a pesquisa, é utilizada uma função JavaScript, dentro dela é criado uma requisição (fetch) que vai fazer uma busca em algum banco de dados e trazer uma respota. Depois a resposta será mapeada para percorrer todos os usuários e a quantidade de ítens de cada, e criar um ítem da lista para cada usuário. Ao terminar, é executada a função de construção do gráfico passando como parâmetro a lista ja formatada.
+Para fazer a pesquisa, é utilizada uma função JavaScript, dentro dela é criada uma requisição (fetch) que vai fazer uma busca em algum banco de dados e trazer uma respota. Depois a resposta será mapeada para percorrer todos os usuários e a quantidade de ítens de cada, e criar um ítem da lista para cada usuário. Ao terminar, é executada a função de construção do gráfico passando como parâmetro a lista ja formatada.
 
 ```JavaScript
 function searchData() {        
@@ -183,7 +183,7 @@ function searchData() {
     }
 ```
 
-Nesse modelo, utilizamos uma busca dentro de um dos índices mais usados do AvantData, o AvantAgent. Como os dados dos indices no nosso sistema é, por padrão, indexado dentro de um banco de dados não relacional, utilizamos a [AvantAPI](https://avantapi.avantsec.com.br/) para fazer uma busca atravez do Custom Search (rota da nosa api em que mandamos uma query de pesquisa para o ElasticSearch e ela retorna o resultado).
+Nesse modelo, utilizamos uma busca dentro de um dos índices mais usados do AvantData, o AvantAgent. Como os dados dos índices no nosso sistema é, por padrão, indexado dentro de um banco de dados não relacional, utilizamos a [AvantAPI](https://avantapi.avantsec.com.br/) para fazer uma busca atravez do Custom Search (rota da nosa API em que mandamos uma query de pesquisa para o ElasticSearch e ela retorna o resultado).
 
 
 ## Construído Utilizando <a name = "built_using"></a>
