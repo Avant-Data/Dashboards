@@ -1,0 +1,70 @@
+<div id="idChart" class="" style="height: 495px; margin: 0 auto;">
+    <!-- O gráfico será criado aqui -->
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        createChart()   
+    }); 
+    
+    function createChart() {
+        
+        // Variável que agrupa todos os elementos que vão aparecer no gráfico em uma lista
+        // Cada ítem da lista contém uma 'label' e um 'value'
+        // 'label' é o nome que o elemento vai receber no gráfico (rótulo)
+        // 'value' é a quantidade
+        let arrayItens = [
+            {
+                label: "Elemento A",
+                value: 9
+            },{
+                label: "Elemento B",
+                value: 8
+            },{
+                label: "Elemento C",
+                value: 7
+            },{
+                label: "Elemento D",
+                value: 6
+            },{
+                label: "Elemento E",
+                value: 5
+            },{
+                label: "Elemento F",
+                value: 4
+            },{
+                label: "Elemento G",
+                value: 3
+            }
+        ]
+        
+        
+        //Organiza os ítens do gráfico do maior 'value' para o menor
+        arrayItens.sort(function(a, b) {
+          return b.value - a.value;
+        });        
+        
+        
+        //Chama a biblioteca para projetar o gráfico dentro do elemento HTML indicado por id em "renderAt"
+    	FusionCharts.ready(function(){
+            var chartObj = new FusionCharts({
+                type: 'bar2d',
+                renderAt: 'idChart',
+                width: '100%',
+                height: '100%',
+                dataFormat: 'json',
+                dataSource: {
+                    "chart": {
+                        "theme": "fusion",
+                        "caption": "Título",
+                        "subCaption": "Subtítulo",
+                        "yAxisName": "Linha inferior"                       
+                    },
+                    "data": arrayItens
+                }
+            });
+			chartObj.render();
+        });
+    }
+</script>
