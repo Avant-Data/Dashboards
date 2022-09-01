@@ -22,6 +22,7 @@
 - [Sobre](#about)
 - [Começando](#starting)
 - [Estrutura](#structure)
+- [Pesquisa](#search)
 - [Construído Utilizando](#built_using)
 
 ## Sobre <a name = "about"></a>
