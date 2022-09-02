@@ -3,7 +3,7 @@
  <img width=250px height=82px src="https://i.imgur.com/zHVh1RJ.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Gráficos</h3>
+<h3 align="center">Gráficos de Valores Múltiplos</h3>
 <h5 align="center">Linha, Área, Coluna e Barra</h5>
 
 <div align="center">
@@ -25,6 +25,7 @@
 
 ## Sobre <a name = "about"></a>
 
+![Exemplos de Gráficos](https://i.imgur.com/iwWqfn7.png)
 ...
 
 ## Construído Utilizando <a name = "built_using"></a>

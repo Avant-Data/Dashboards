@@ -14,7 +14,8 @@
 
 ---
 
-<p align="center"> Como aplicar e utilizar um gráfico de área, barras, colunas e linhas utilizando formulários no dashboard.
+<p align="center"> Como aplicar e utilizar um gráfico de área, barras, colunas e linhas utilizando formulários no dashboard.<br>
+
     <br> 
 </p>
 
@@ -31,6 +32,8 @@
 ![Exemplos de Gráficos](https://i.imgur.com/rEKfA2G.png)
 
 Um gráfico é uma representação visual de comparação entre elementos.Visualização de dois eixos (X e Y) indicando nome e valor de cada ítem. Ao passar o mouse sobre cada elemento, ele é ressaltado aparecendo uma pequena janela contendo o nome e valor do campo específico. Esse modelo pode ser usado para criar um gráfico dos tipos <i>Linha, Área, Barras e Colunas</i> com exatamente a mesma estrutura, diferenciando apenas o atributo "type" (tipo).
+
+A diferença do<i> [gráfico de valores múltiplos]() </i>e <i>gráfico simples</i> está na quantidade de elementos por valor. Ou seja, o gráfico simples consegue apenas apresentar um ítem (eixo Y) por ítem (eixo X), enquanto o gráfico de valores múltiploes consegue apresentar varios valores (eixo X) por ítem (eixo Y).
 
 Nesse modelo, a estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de gráficos chamada Fusion Charts. No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
 
