@@ -3,7 +3,8 @@
  <img width=250px height=82px src="https://i.imgur.com/zHVh1RJ.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Linhas do Tempo</h3>
+<h3 align="center">Gráficos</h3>
+<h5 align="center">Linha, Área, Coluna e Barra</h5>
 
 <div align="center">
 
@@ -13,13 +14,14 @@
 
 ---
 
-<p align="center"> (Descrição das timelines)
+<p align="center"> (Descrição dos Gráficos)
     <br> 
 </p>
 
 ## Índice
 
 - [Sobre](#about)
+- [Construído Utilizando](#built_using)
 
 ## Sobre <a name = "about"></a>
 

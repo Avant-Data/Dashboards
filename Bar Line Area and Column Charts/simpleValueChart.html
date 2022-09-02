@@ -1,0 +1,86 @@
+<div>
+    <div id="divChart" style="height:496px;"></div>
+</div>
+<script>
+    
+    $(document).ready(function () {
+        createLineChart()
+    }); 
+    
+    function createLineChart() {
+        
+        let dataValue = {
+            "chart": {
+                "theme": "fusion",
+                "caption": "Título",
+                "subCaption": "Subtítulo",
+                "xAxisName": "Tempo",
+                "yAxisName": "Valor",
+                "lineThickness": "3"
+            },
+            "data": [
+                {
+                    "label": "Seg.",
+                    "value": "10"
+                },
+                {
+                    "label": "Ter.",
+                    "value": "20"
+                },
+                {
+                    "label": "Qua.",
+                    "value": "30"
+                },
+                {
+                    "label": "Qui.",
+                    "value": "10"
+                },
+                {
+                    "label": "Sex.",
+                    "value": "50"
+                },
+                {
+                    "label": "Sáb.",
+                    "value": "60"
+                },
+                {
+                    "label": "Dom.",
+                    "value": "25"
+                }
+            ],
+            "trendlines": [                                             // Linhas de Referência
+                {
+                    "line": [                                                   
+                        {
+                            "startvalue": "35",                         // Altura (Valor)
+                            "color": "green",                           // Cor
+                            "displayvalue": "LINHA{br}MÉDIA",           // Nome
+                            "valueOnRight": "5",                        // Valor à direita
+                            "thickness": "2"                            // Grossura da linha
+                        },
+                        {
+                            "startvalue": "50",                         // Altura (Valor)
+                            "color": "#e96817",                         // Cor
+                            "displayvalue": "LINHA{br}META",            // Nome
+                            "valueOnRight": "5",                        // Valor à direita
+                            "thickness": "3"                            // Grossura da linha
+                        }
+                    ]
+                }
+            ]
+        }
+
+    	FusionCharts.ready(function(){
+            var chartObj = new FusionCharts({
+                type: 'line',                       // tipo área: area2d   Tipo barra: bar2D   line: line  colunas: column2d
+                renderAt: 'divChart',
+                width: '100%',
+                height: '100%',
+                dataFormat: 'json',
+                dataSource: dataValue
+            });
+			chartObj.render();
+        });
+    }
+ 
+</script>

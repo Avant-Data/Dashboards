@@ -3,7 +3,8 @@
  <img width=250px height=82px src="https://i.imgur.com/zHVh1RJ.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Gráfico de Barras</h3>
+<h3 align="center">Gráfico</h3>
+<h5 align="center">Área, Barras, Colunas e Linhas</h5>
 
 <div align="center">
 
@@ -13,7 +14,7 @@
 
 ---
 
-<p align="center"> Como aplicar e utilizar um gráfico de barras dentro utilizando formulários no dashboard.
+<p align="center"> Como aplicar e utilizar um gráfico de área, barras, colunas e linhas utilizando formulários no dashboard.
     <br> 
 </p>
 
@@ -29,11 +30,11 @@
 
 ![Exemplos de Gráfico de barras](https://i.imgur.com/EkGRGMo.png)
 
-Um gráfico de barras é uma representação visual de comparação entre elementos. Na vertical à esquerda, aparece o nome dos ítens, logo a frente uma coluna deitada indica o valor daquele elemento (indicados na parte de baixo do gráfico). Ao passar o mouse sobre cada barra, ela é ressaltada aparecendo uma pequena janela contendo o nome e valor do campo específico.
+Um gráfico é uma representação visual de comparação entre elementos.Visualização de dois eixos (X e Y) indicando nome e valor de cada ítem. Ao passar o mouse sobre cada elemento, ele é ressaltado aparecendo uma pequena janela contendo o nome e valor do campo específico.
 
 Nesse modelo, a estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de gráficos chamada Fusion Charts. No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
 
-Esse modelo é específico para usuários que queiram montar utilizando a estrutura em formulário, visto que esse tipo de gráfico pode ser facilmente gerado usando a criação dinâmica de gráficos no menu de contexto, ao invéz de criar um novo 'formulário', escolhendo "cartão'.
+Esse modelo é específico para usuários que queiram montar utilizando a estrutura em formulário, visto que esses tipos de gráfico podem ser facilmente gerados usando a criação dinâmica de gráficos no menu de contexto, ao invéz de criar um novo 'formulário', escolhendo "cartão'.
 
 ```
 Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboard do AvantData, visto que depende de bibliotecas ja instaladas no programa.

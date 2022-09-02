@@ -23,7 +23,7 @@
         //Executa a biblioteca para projetar o gráfico dentro do elemento HTML indicado pelo id em "renderAt"
     	FusionCharts.ready(function(){
             var chartObj = new FusionCharts({
-                type: 'bar2d',
+                type: 'bar2d',      // Tipo área: area2d  | Tipo barra: bar2D  | Tipo linha: line | Tipo colunas: column2d
                 renderAt: 'idChart',
                 width: '100%',
                 height: '100%',
@@ -35,7 +35,27 @@
                         "subCaption": "Subtítulo",
                         "yAxisName": "Linha inferior"                       
                     },
-                    "data": arrayItens
+                    "data": arrayItens,
+                    "trendlines": [                         // Linhas de Referência
+                {
+                    "line": [                                                   
+                        {
+                            "startvalue": "100",            // Altura (Valor)
+                            "color": "green",               // Cor
+                            "displayvalue": "Ref 1",        // Nome
+                            "valueOnRight": "5",            // Valor à direita
+                            "thickness": "2"                // Grossura da linha
+                        },
+                        {
+                            "startvalue": "200",            // Altura (Valor)
+                            "color": "#e96817",             // Cor
+                            "displayvalue": "Ref 2",        // Nome
+                            "valueOnRight": "5",            // Valor à direita
+                            "thickness": "3"                // Grossura da linha
+                        }
+                    ]
+                }
+            ]
                 }
             });
 			chartObj.render();

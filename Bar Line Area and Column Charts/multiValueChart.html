@@ -1,0 +1,143 @@
+<div>
+    <div id="idDivValues" style="height:495px;"></div>
+</div>
+<script>
+    
+    $(document).ready(function () {
+        createMultiValueChart()
+    }); 
+    
+    function createMultiValueChart() {
+        
+        let dataValues = {
+            "chart": {
+                "caption": "Título",
+                "subCaption": "Subtítulo",
+                "xAxisName": "Dia",
+                "theme": "fusion",
+                "numberPrefix": "R$ "
+            },
+            "categories": [
+                {                       // Bloco dos nomes dos ítens
+                    "category": [
+                        {
+                            "label": "Segunda"
+                        },
+                        {
+                            "label": "Terça"
+                        },
+                        {
+                            "label": "Quarta"
+                        },
+                        {
+                            "label": "Quinta"
+                        },
+                        {
+                            "label": "Sexta"
+                        },
+                        {    // Linha vertical de indicação facultativa
+                            "vline": "true",
+                            "lineposition": "0",
+                            "color": "#6baa01",
+                            "labelHAlign": "center",
+                            "labelPosition": "0",
+                            "label": "FDS",
+                            "dashed": "1"
+                        },
+                        {
+                            "label": "Sábado"
+                        },
+                        {
+                            "label": "Domingo"
+                        }
+                    ]
+                }
+            ],
+            "dataset": [
+                {                       // Bloco do primeiro grupo de Valores
+                    "seriesname": "Exemplo Gastos",  
+                    "data": [
+                        {
+                            "value": 200
+                        },
+                        {
+                            "value": 350
+                        },
+                        {
+                            "value": 500
+                        },
+                        {
+                            "value": 100
+                        },
+                        {
+                            "value": 140
+                        },
+                        {
+                            "value": 630
+                        },
+                        {
+                            "value": 540
+                        }
+                    ]
+                },
+                {                       // Bloco do segundo grupo de valores
+                    "seriesname": "Exemplo Lucro",
+                    "data": [
+                        {
+                            "value": 750
+                        },
+                        {
+                            "value": 850
+                        },
+                        {
+                            "value": 560
+                        },
+                        {
+                            "value": 690
+                        },
+                        {
+                            "value": 900
+                        },
+                        {
+                            "value": 550
+                        },
+                        {
+                            "value": 630
+                        }
+                    ]
+                }
+            ],
+            "trendlines": [
+                {                   // Bloco das linhas de referência
+                    "line": [
+                        {
+                            "startvalue": 350,
+                            "color": "#e96817;",
+                            "valueOnRight": "1",
+                            "displayvalue": "Média{br}Gastos"
+                        },
+                        {
+                            "startvalue": 705,
+                            "color": "#38a0a4",
+                            "valueOnRight": "1",
+                            "displayvalue": "Media{br}Lucro"
+                        }
+                    ]
+                }
+            ]
+        }
+
+    	FusionCharts.ready(function(){
+            var chartObj = new FusionCharts({
+                type: 'msarea',                       // tipo área: msarea   Tipo barra: msbar2D   line: msline  colunas: mscolumn2d
+                renderAt: 'idDivValues',
+                width: '100%',
+                height: '100%',
+                dataFormat: 'json',
+                dataSource: dataValues
+            });
+			chartObj.render();
+        });
+    }
+ 
+</script>
