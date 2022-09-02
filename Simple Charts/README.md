@@ -3,7 +3,7 @@
  <img width=250px height=82px src="https://i.imgur.com/zHVh1RJ.png" alt="Project logo"></a>
 </p>
 
-<h3 align="center">Gráfico</h3>
+<h3 align="center">Gráfico Simples</h3>
 <h5 align="center">Área, Barras, Colunas e Linhas</h5>
 
 <div align="center">
@@ -28,9 +28,9 @@
 
 ## Sobre <a name = "about"></a>
 
-![Exemplos de Gráfico de barras](https://i.imgur.com/EkGRGMo.png)
+![Exemplos de Gráficos](https://i.imgur.com/rEKfA2G.png)
 
-Um gráfico é uma representação visual de comparação entre elementos.Visualização de dois eixos (X e Y) indicando nome e valor de cada ítem. Ao passar o mouse sobre cada elemento, ele é ressaltado aparecendo uma pequena janela contendo o nome e valor do campo específico.
+Um gráfico é uma representação visual de comparação entre elementos.Visualização de dois eixos (X e Y) indicando nome e valor de cada ítem. Ao passar o mouse sobre cada elemento, ele é ressaltado aparecendo uma pequena janela contendo o nome e valor do campo específico. Esse modelo pode ser usado para criar um gráfico dos tipos <i>Linha, Área, Barras e Colunas</i> com exatamente a mesma estrutura, diferenciando apenas o atributo "type" (tipo).
 
 Nesse modelo, a estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de gráficos chamada Fusion Charts. No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
 
@@ -62,29 +62,57 @@ Logo após o código fonte continua com a criação do JavaScript. Iniciando com
 
 Em seguida, é feita uma ordenação dessa lista, colocando no topo aqueles com o maior valor. Depois essa lista é cortada, deixando apenas os 15 primeiros valores. Caso o usuário queira aumentar a quantidade máxima de valores exibidos no gráfico, basta substituir o valor de '0 a 15' para de '0 a x'. Entretanto, caso não queira nenhum valor máximo, basta colocar duas barras "//" antes do comando "arrSelecao = array.slice(0, 15);".
 
+Observa-se também, que exite um campo de "trendlines" que são chamadas <i>linhas de referência</i>. São usadas para criar um ponto de referência no gráfico, como métas, média, soma ou qualquer outro valor desejado. São facultativas e ajustáveis, ou seja, o usuário pode adicionar quantas quiser multiplicando e ajustando os campos de configuração de cada uma, ou remover da mesma forma.
+
 ```js
 let arrayItens = [
     {
-        label: "Elemento A",
-        value: 9
-    },{
-        label: "Elemento B",
-        value: 8
-    },{
-        label: "Elemento C",
-        value: 7
-    },{
-        label: "Elemento D",
-        value: 6
-    },{
-        label: "Elemento E",
-        value: 5
-    },{
-        label: "Elemento F",
-        value: 4
-    },{
-        label: "Elemento G",
-        value: 3
+        "label": "Seg.",
+        "value": "10"
+    },
+    {
+        "label": "Ter.",
+        "value": "20"
+    },
+    {
+        "label": "Qua.",
+        "value": "30"
+    },
+    {
+        "label": "Qui.",
+        "value": "10"
+    },
+    {
+        "label": "Sex.",
+        "value": "50"
+    },
+    {
+        "label": "Sáb.",
+        "value": "60"
+    },
+    {
+        "label": "Dom.",
+        "value": "25"
+    }
+],
+"trendlines": [                                    // Linhas de Referência
+    {
+        "line": [                                                   
+            {
+                "startvalue": "35",                // Altura (Valor)
+                "color": "green",                  // Cor
+                "displayvalue": "LINHA{br}MÉDIA",  // Nome
+                "valueOnRight": "5",               // Valor à direita
+                "thickness": "2"                   // Grossura da linha
+            },
+            {
+                "startvalue": "50",                // Altura (Valor)
+                "color": "#e96817",                // Cor
+                "displayvalue": "LINHA{br}META",   // Nome
+                "valueOnRight": "5",               // Valor à direita
+                "thickness": "3"                   // Grossura da linha
+            }
+        ]
     }
 ]
 //Organiza os ítens do gráfico do maior 'value' para o menor
