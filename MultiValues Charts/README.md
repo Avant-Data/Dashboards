@@ -210,3 +210,4 @@ FusionCharts.ready(function(){
 
 - [AvantData](https://www.avantdata.com.br/) - Plataforma de análise, correlacionamento e gestão de dados em redes corporativas
 - [AvantApi](https://avantapi.avantsec.com.br/) - Família de endpoints RESTFUL API para customização de ações no AvantData
+- [FusionCharts](https://github.com/fusioncharts) - Biblioteca de gráficos JavaScript que fornece gráficos interativos e responsivos
