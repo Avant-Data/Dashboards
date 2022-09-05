@@ -1,6 +1,7 @@
-<div>
-    <div id="idDivValues" style="height:495px;"></div>
+<div id="idDivValues" style="height:495px;">
+    <!-- O gráfico será criado aqui -->
 </div>
+
 <script>
     
     $(document).ready(function () {
@@ -111,16 +112,18 @@
                 {                   // Bloco das linhas de referência
                     "line": [
                         {
-                            "startvalue": 350,
-                            "color": "#e96817;",
-                            "valueOnRight": "1",
-                            "displayvalue": "Média{br}Gastos"
+                            "startvalue": 350,                  // Altura (Valor) eixo Y
+                            "color": "#e96817;",                // Cor
+                            "displayvalue": "Média{br}Gastos",  // Nome
+                            "valueOnRight": "1",                // Valor à direita
+                            "thickness": "2"                    // Grossura da linha
                         },
                         {
-                            "startvalue": 705,
-                            "color": "#38a0a4",
-                            "valueOnRight": "1",
-                            "displayvalue": "Media{br}Lucro"
+                            "startvalue": 705,                  // Altura (Valor) eixo Y
+                            "color": "#38a0a4",                 // Cor
+                            "displayvalue": "Media{br}Lucro",   // Nome
+                            "valueOnRight": "1",                // Valor a direita
+                            "thickness": "2"                    // Grossura da linha
                         }
                     ]
                 }
@@ -129,7 +132,7 @@
 
     	FusionCharts.ready(function(){
             var chartObj = new FusionCharts({
-                type: 'msarea',                       // tipo área: msarea   Tipo barra: msbar2D   line: msline  colunas: mscolumn2d
+                type: 'msarea',             // tipo área: msarea   Tipo barra: msbar2D   Tipo linha: msline  Tipo colunas: mscolumn2d
                 renderAt: 'idDivValues',
                 width: '100%',
                 height: '100%',

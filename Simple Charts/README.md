@@ -53,7 +53,7 @@ Ao abrir a modal de edição, cole o código fonte no espaço de texto. Atente-s
 
 ## Estrutura <a name = "structure"></a>
 
-O código fonte é composto por uma estrutura padrão, composta por uma pequena parte HTML, apenas uma divisão identificada por um atributo 'id'. Dentro desse elemento será criado o gráfico pela biblioteca, por isso essa divisão está vazia. Ao ser montado, o gráfico de barras se adaptará a qualquer largura, porém está com a altura padrão de 495 pixels, para alterar esse valor, basta o usuário substituir o valor do campo 'height'.
+O código fonte é composto por uma estrutura padrão, composta por uma pequena parte HTML, apenas uma divisão identificada por um atributo 'id'. Dentro desse elemento será criado o gráfico pela biblioteca, por isso essa divisão está vazia. Ao ser montado, o gráfico se adaptará a qualquer largura, porém está com a altura padrão de 495 pixels, para alterar esse valor, basta o usuário substituir o valor do campo 'height'.
 
 ```html
 <div id="idChart" class="" style="height: 495px; margin: 0 auto;">
@@ -125,15 +125,15 @@ arrayItens.sort(function(a, b) {
 //Define a quantidade máxima de ítens exibidos no gráfico, nesse caso: 15
 arrSelecao = array.slice(0, 15);
 ```
-Depois é executada a biblioteca FusionCharts que vai configurar todas as informações adicionais e incorporar a lista ja criada. O valor do campo "renderAt" deve ser o 'id' do elemento HTML onde será inserido o gráfico. O campo "data" deve ser atribuido com o nome da variável onde está contida a lista.
+Depois é executada a biblioteca FusionCharts que vai configurar todas as informações adicionais e incorporar a lista ja criada. O valor do campo "renderAt" deve ser o 'id' do elemento HTML onde será inserido o gráfico. O campo "data" deve ser atribuido com o nome da variável onde está contida a lista. O campo "type" é onde o usuário vai escolher o formato do gráfico, sendo ele de área (area2d), barras (bar2D), colunas (column2d) ou linha (line).
 
-Para customisação, é possível alterar o Título, Subtítulo e Nome do eixo Y substituindo respectivamente os valores dos campos "caption", "subCaption" e "yAxisName". Por padrão, a biblioteca monta o gráfico usando um tema de cores chamado 'fusion', o usuário pode alterar para algum outro tema aceito pela biblioteca que são:" fusion", "ocean", "candy", "carbon", "umber", "zune" e "gammel".
+Para customisação, é possível alterar o Título, Subtítulo e Nome do eixo Y substituindo respectivamente os valores dos campos "caption", "subCaption" e "yAxisName". Por padrão, a biblioteca monta o gráfico usando um tema de cores chamado 'fusion', o usuário pode alterar para algum outro tema aceito pela biblioteca que são: "fusion", "ocean", "candy", "carbon", "umber", "zune" e "gammel".
 
 
 ```js
 FusionCharts.ready(function(){
     var chartObj = new FusionCharts({
-        type: 'bar2d',
+        type: 'bar2d',  // Tipo área: 'area2d'  | Tipo barra: 'bar2D'  | Tipo linha: 'line' | Tipo colunas: 'column2d'
         renderAt: 'idChart',
         width: '100%',
         height: '100%',
