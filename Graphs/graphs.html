@@ -1,0 +1,233 @@
+<head>
+    <script defer type="text/javascript" src="/AvantdataNovo/public/js/visJs/vis-network.min.js"></script>
+</head>
+
+<div id="divGraphStands" style="height: 495px;">
+    <!-- O grafo será inserido aqui-->
+</div>
+
+<script>
+
+    var usuarioLocal;
+    
+    $(document).ready(function () {
+        Rotas.getUserName((usuario) => {
+            usuarioLocal = JSON.parse(usuario)
+        })
+        // createGraph('divGraphStands',{})
+        // getAppearanceConfig()
+        searchScan()
+    }); 
+
+
+    function getAppearanceConfig(nodes, relations) {
+      
+        $.ajax({
+            // url: `/avantapi/2.0/graph/appearance/${usuarioLocal}`,              // Buscar todas as aparências 
+            url: `/avantapi/2.0/graph/appearance/default/${usuarioLocal}`,   // Buscar a aparência padrão
+            type: 'GET',
+            async: false,
+            success: (resposta) => {
+                console.log('resposta')
+                console.log(resposta)
+                
+                let key = resposta[0] // caso tenha buscado a aparência padrão 
+                // let key = resposta[3] // Ao buscar todas as aparências deve-se escolher qual delas será usada, o número dela deve estar dentro dos colchetes. Ex: '[3]'
+                
+                
+                // Cria a lista de opções que foram buscadas 
+                let optionsGraph = {
+                    interaction: JSON.parse(key['interaction']),
+                    nodes: JSON.parse(key['nodes']),
+                    edges: JSON.parse(key['edges']),
+                    manipulation: JSON.parse(key['manipulation']),
+                    layout: JSON.parse(key['layout']),
+                    physics: JSON.parse(key['physics'])
+                }
+                
+                createGraph('divGraphStands', nodes, relations, optionsGraph)
+                
+            },
+            error: (error) => {
+                console.log(error)
+            }
+        })
+        
+    }
+
+    function createGraph(id, nodeslist, relations, options) {
+        if(nodeslist != '' && nodeslist != undefined && nodeslist != null) {
+
+            var data = {
+                nodes: nodeslist,
+                edges: relations
+                // nodes: [
+                //     { "id": '1', "label": "Nó A", "attributes": { "attr!": "Ex1", "attr2": "Ex2" }, "title": "Nó central" },
+                //     { "id": '2', "label": "Nó B", "attributes": {}, "title": "Título nó B" },
+                //     { "id": '3', "label": "Nó C", "attributes": {}, "title": "Título nó C" },
+                //     { "id": '4', "label": "Nó D", "attributes": {}, "title": "Título nó D" },
+                //     { "id": '5', "label": "Nó E", "attributes": {}, "title": "Título nó E" },
+                //     { "id": '6', "label": "Nó F", "attributes": {}, "title": "Título nó F" },
+                //     { "id": '7', "label": "Nó G", "attributes": {}, "title": "Título nó G" },
+                //     { "id": '8', "label": "Nó H", "attributes": {}, "title": "Título nó H" },
+                // ],
+                // edges: [
+                //     { "from": '1', "to": 2, "label": "Link 1", "title": "Título link A" },
+                //     { "from": '1', "to": 3, "label": "Link 2", "title": "Título link A" },
+                //     { "from": '1', "to": 4, "label": "Link 3", "title": "Título link A" },
+                //     { "from": '1', "to": 5, "label": "Link 4", "title": "Título link A" },
+                //     { "from": '1', "to": 6, "label": "Link 5", "title": "Título link A" },
+                //     { "from": '2', "to": 7, "label": "Link 6", "title": "Título link A" },
+                //     { "from": '2', "to": 8, "label": "Link 7", "title": "Título link A" },
+                // ]
+            }        
+            var container = document.getElementById(id);
+            network = new vis.Network(container, data, options);
+        } else {
+            toastr.warning('A pesquisa não achou nenhum resultado', 'Aviso', { positionClass: "toast-bottom-right",closeButton: "true"});
+        }        
+    }    
+    
+    function searchScan() {
+        toastr.info('Aguarde enquanto os dados são carregados.', 'Aviso', { positionClass: "toast-bottom-right",closeButton: "true"});
+   
+        let nodesApiExterna = []    //todos as cves da api externa
+        let nodesIndexados = []     //todas as cves indexadas        
+        let AllNodes = []           //onde serão inseridos todos os nós para criação do gráfico
+        let relation = []           //onde serão inseridos todos os links
+        let moderation = []         // variável de apoio 
+        
+        let cpe_nome = 'cpe:/a:grafana:grafana:6.6.1'
+        let urlSearch = 'https://services.nvd.nist.gov/rest/json/cpes/1.0?addOns=cves&resultsPerPage=50&cpeMatchString=' + cpe_nome;
+           
+        // busca todas as CVEs da api externa
+        $.ajax({
+            url: urlSearch,
+            method: 'GET',
+            async: false,
+            success: (responseCPE) => {
+              
+                console.log('responseCPE')
+                console.log(responseCPE)
+                
+                let cpeResultList = responseCPE.result.cpes
+                for (i in cpeResultList) {
+                    let cveList = cpeResultList[i].vulnerabilities
+                    for (j in cveList) {
+                        
+                        if(nodesApiExterna.includes(cveList[j]) == false) {
+                            nodesApiExterna.push(cveList[j])
+                        }
+                    }
+                }
+            },
+            error: (err) => {
+                console.log(err)
+            }
+        })        
+
+        let queryDetailCVE = {
+            index: "avantscan_results",
+            size: 5000,
+            body: {
+                query: {
+                    query_string: {
+                        query: `nvt.refs.ref: *`
+                    }
+                }
+            }
+        };
+
+        // Busca as CVEs indexadas no AvantData nos índices avantscan_results
+        $.ajax({
+            url: '/avantapi/avantData/search/customSearch',
+            method: 'POST',
+            async: false,
+            headers: {
+                'cluster': 'AvantData'
+            },
+            data: JSON.stringify(queryDetailCVE),
+            success: (responseCVE) => {
+
+                console.log('responseCVE88888')
+                console.log(responseCVE)
+
+                if (responseCVE.hits.hits) {
+                    let arrayHits = responseCVE.hits.hits
+                    arrayHits.forEach((result)=>{ 
+                        let arrayRef = result._source.nvt.refs.ref
+                        if(Array.isArray(arrayRef)) {
+                            for(i in arrayRef) {
+                                if(arrayRef[i].type == "cve") {
+                                    if (nodesIndexados.includes(arrayRef[i].id) == false) {
+                                        nodesIndexados.push(arrayRef[i].id) 
+                                    }
+                                }
+                            }
+                            
+                        } else {
+                            if(arrayRef.type == "cve") {
+                                if (nodesIndexados.includes(arrayRef.id) == false) {
+                                    nodesIndexados.push(arrayRef.id) 
+                                }
+                            }
+                        }
+                    })
+                }  
+            },
+            error: (err) => {
+                console.log(err)
+            }
+        })
+        
+        //Compara as CVEs das duas fontes e cria as litas de nós e relações
+        for (t in nodesIndexados) {
+            if(nodesApiExterna.includes(nodesIndexados[t]) == true) {
+                moderation.push(nodesIndexados[t])
+                
+                AllNodes.push({ 
+                    "id": `${nodesIndexados[t]}`,
+                    "label": `${nodesIndexados[t]}`,
+                    "title": `${nodesIndexados[t]}`, 
+                    "attributes": {}
+                })
+                
+                relation.push({
+                    "from": `${nodesIndexados[t]}`,
+                    "to": 'Vulneráveis',
+                    "label": "Link",
+                    "title": "" 
+                })
+                relation.push({
+                    "from": `${nodesIndexados[t]}`,
+                    "to": 'Indexado',
+                    "label": "Link",
+                    "title": "" 
+                })
+                
+                if(moderation.includes('Vulneráveis') == false) {
+                    moderation.push('Vulneráveis')
+                    AllNodes.push({
+                        "id": 'Vulneráveis',
+                        "label": 'Vulneráveis',
+                        "title": 'Vulneráveis', 
+                        "attributes": {}
+                    })
+                }
+                if(moderation.includes('Indexado') == false) {
+                    moderation.push('Indexado')
+                    AllNodes.push({ 
+                        "id": 'Indexado',
+                        "label": 'Indexado',
+                        "title": 'Indexado', 
+                        "attributes": {}
+                    })
+                }
+            }
+        }          
+        // Envia as listas de nós e relações para a função que vai buscar a aparência para montar o grapho
+        getAppearanceConfig(AllNodes, relation)        
+    }
+
+    
+</script>
