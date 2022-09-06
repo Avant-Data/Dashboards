@@ -14,7 +14,7 @@
 
 ---
 
-<p align="center"> Como aplicar e utilizar um gráfico de área, barras, colunas e linhas utilizando formulários no dashboard.<br>
+<p align="center"> Como aplicar e utilizar um gráfico simples de área, barras, colunas e linhas utilizando formulários no dashboard.<br>
 
     <br> 
 </p>

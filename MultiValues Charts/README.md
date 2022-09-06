@@ -14,7 +14,7 @@
 
 ---
 
-<p align="center"> (Descrição dos Gráficos)
+<p align="center"> Como aplicar e utilizar um gráfico de área, barras, colunas e linhas de múltiplos valores utilizando formulários no dashboard.
     <br> 
 </p>
 
