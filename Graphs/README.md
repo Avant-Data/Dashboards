@@ -34,7 +34,7 @@
 
 Grafo é uma representação gráfica de valores ligados uns aos outros através de ralações, criando pontos e linhas para moldar uma visualização. Os pontos são chamados de <i>nós</i>, as linhas de <i>relações</i>. O AvantData disponibiliza toda a configuração e ultilização dessa ferramenta dentro do módulo AvantGraph, mas podem também ser criados dentro do dashboard.
 
-Nesse modelo,a  estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de  grafos chamada Vis Network.No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
+Nesse modelo,a  estrutura e a visualização são criadas através de uma biblioteca JavaScript para criação dinâmica de  grafos chamada Vis Network. No código fonte, trazemos a opção de preencher o gráfico dinamicamente, atravez de uma pesquisa.
 
 ```
 Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboard do AvantData, visto que depende de bibliotecas ja instaladas no programa.
@@ -42,7 +42,7 @@ Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboa
 
 ## Peculiaridades <a name = "peculiar"></a>
 
-Esse tipo de gráfico traz interações especiais que os diferenciam dos demais. Em sua configuração pode ser habilitada a interação com mouse que imita as regras da física no mundo real, dessa forma o usuário pode arrastar nós e linhas criando animações elásticas e vibrantes. Ao clicar em um nó ou relação, esse elemento é ressaltado. Ao descansar o mouse sobre algum elemente, uma janela aparece trazendo o título específico dele.
+Esse tipo de gráfico traz interações especiais que os diferenciam dos demais. Em sua configuração pode ser habilitada a interação com mouse que imita as regras da física no mundo real, dessa forma o usuário pode arrastar nós e linhas criando animações elásticas e vibrantes. Ao clicar em um nó ou relação, esse elemento é ressaltado. Ao descansar o mouse sobre algum elemente, uma janela aparece trazendo o título específico dele. Ao rolar o scroll do mouse sobre o gráfico é ajusatado o zoon.
 
 <!-- ![Exemplo movimentação](https://i.imgur.com/27hq4hG.mp4) -->
 
@@ -139,17 +139,17 @@ Ressaltando que no código fonte, as listas são criadas dinamicamente atravéz 
 Depois da criação da variável com as listas de nós e relações, é a hora de indicar o 'id' da estrutura html que receberá o gráfico, isso é feito dentro da variável 'container'. Logo após é executada a biblioteca 'vis.Network()' e dentro dela são enviados alguns parâmetros que <b>obrigatóriamente</b> precisam estar nessa órdem:
   * Primeiro: Deve ser a identificação do elemento HTML onde o grafo será criado, nesse caso com o nome da variável 'container'.
   * Segundo: Deve ser a estrutura JSON que traz as listas de nós e relações, nesse caso com o nome da variável 'data'.
-  * Terceiro: Deve ser a estrutura JSON com a aparência que formatará o gráfo, em caso de não ter uma aparência selecionada, ainda deve ser enviada como '{}'. Nesse caso enviarêmos uma variável 'options' que será o resultado da busca das aparências explicada logo a frente.
+  * Terceiro: Deve ser a estrutura JSON com a aparência que formatará o gráfo, em caso de não ter uma aparência selecionada, ainda deve ser enviada como '{}'. Nesse caso enviaremos uma variável 'options' que será o resultado da busca das aparências explicada logo a frente.
 
 ## Pesquisa <a name = "search"></a>
 
-Esse modelo tem o objetivo de trazer um exemplo de uma apresentação de grafo com dados dinâmicos, isto é, dados que são pesquisados no momento do carregamento do gráfico.
+Esse modelo tem o objetivo de trazer um exemplo de uma apresentação de grafo com dados dinâmicos, isto é, dados que são pesquisados no momento do carregamento do código.
 
 O AvantScan é um módulo do AvantData que vaz varreduras procurando por vulnerabilidades em uma rede e indexa todos os resultados. Um desses dados é chamado de "CVE", que são códigos de vulnerabilidades conhecidas pela comunidade. A NIST (National Institute of Standards and Technology) documenta e espeficifica essas 'CVEs' que podem ser consultadas pela API deles.
 
 > A ideia dessa pesquisa exemplo é cruzar os dados no NIST com as CVEs indexadas pelo AvantScan e apresentar uma ligação de quais dados são correlacionados.
 
-No código fonte isso é feita em uma função JavaScript chamada searchScan(). No início é criada uma mensagem 'toastr' que aparecerá para informar o usuário que a pesquisa está sendo feita e então declaradas as variáveis que serão usadas e preenchidas no decorrer do código.
+No código fonte isso é feita em uma função JavaScript chamada 'searchScan()'. No início é criada uma mensagem 'toastr' que aparecerá para informar o usuário que a pesquisa está sendo feita e então declaradas as variáveis que serão usadas e preenchidas no decorrer do código.
 
 ```js
 toastr.info('Aguarde enquanto os dados são carregados.', 'Aviso', { positionClass: "toast-bottom-right",closeButton: "true"});
@@ -161,7 +161,7 @@ let relation = []           //onde serão inseridos todos os links
 let moderation = []         // variável de apoio 
 ```
 
-Depois é feita uma consulta pela API da NIST buscando os dados das vulnerabilidades encontrados numa CPE (conjunto semântico de vulnerabilidades). A pesquisa é feita usando AJAX e vai armazenar todas as CVEs encontradas em uma das variáveis criandas anteriormente.
+Depois é feita uma consulta pela API da NIST buscando os dados das vulnerabilidades encontrados numa CPE (conjunto de vulnerabilidades de um contexto). A pesquisa é feita usando AJAX e vai armazenar todas as CVEs encontradas em uma das variáveis criandas anteriormente.
 
 ```js
 // busca todas as CVEs da api externa do NIST (National Institute of Standards and Technology)
@@ -244,7 +244,7 @@ $.ajax({
 
 A última parte da função é composta pera comparação entre as variáveis que contem os dois grupos de CVEs encontradas nas duas pesquisas, quando elas são equivalentes são criados itens de 'nó' e 'relações'. Uma das variáveis será usada para montar a lista dos 'nós' do grafo, outra será usada para formar a lista das 'relações' seguindo a [estrutura](#node_relation) ja mensionada anteriormente. 
 
-Quando a comparçaão finaliza, as listas de nós e relações são enviadas para outra função que vai buscar as aparências para customizar o grafo e, enfim, montar o grafo.
+Quando a comparção finaliza, as listas de nós e relações são enviadas para outra função que vai buscar as aparências para customizar o grafo e, enfim, montar o grafo.
 
 ```js
 //Compara as CVEs das duas fontes e cria as litas de nós e relações
@@ -298,11 +298,11 @@ getAppearanceConfig(AllNodes, relation)
 
 ## Aparência<a name = "style"></a>
 
-A imagem a seguir representa diferentes visualizações do mesmo resultado das pesquisas feitas em um ambiente de testes com dados indexados do AvantScan, e representam um pequeno exemplo da variedade de formas e cores que podem ser criadas.
+A imagem a seguir representa diferentes visualizações do mesmo resultado das pesquisas feitas em um ambiente de testes com dados indexados do AvantScan e representam um pequeno exemplo da variedade de formas e cores que podem ser criadas.
 
 ![Grafo padrão](https://i.imgur.com/QpwxOWB.png)
 
-A função ja inicia recebendo dois parâmetros, que são as listas de nós (nodes) e relações (relations). Logo a seguir inicia a busca das aparências com o AJAX. O campo 'url' pode ser preenchido com duas rotas diferentes da API, uma delas para buscar a aparência definida como padrão, ja a outra para trazer uma lista com todas as aparências já criadas, ao alterar a rota definida, deve-se também alterar a váriavel 'key' que buscará o valor correto do índice da resposta, alterando qual ítem da lista de aparências deseja buscar.
+A função ja inicia recebendo dois parâmetros, que são as listas de nós (nodes) e relações (relations). Logo a seguir busca as aparências com o AJAX. O campo 'url' pode ser preenchido com duas rotas diferentes da API, uma delas para buscar a aparência definida como padrão, ja a outra para trazer uma lista com todas as aparências já criadas, ao alterar a rota definida, deve-se também alterar a váriavel 'key' que buscará o valor correto do índice da resposta, alterando qual ítem da lista de aparências deseja buscar.
 
 Após escolher a aparência a variável 'optionsGraph' vai montar e armazenar a estrutura JSON com as informações da aparência escolhida e logo após será executada a função 'createGraph()' enviando o id HTML, a lista de nós, a lista de relações e as opções de aparências escolhidas.
 
@@ -319,8 +319,7 @@ function getAppearanceConfig(nodes, relations) {
             
             let key = resposta[0] // caso tenha buscado a aparência padrão 
 
-            // let key = resposta[3] // Ao buscar todas as aparências deve-se escolher qual delas será usada, o número dela deve estar dentro dos colchetes. Ex: '[3]'
-            
+            // let key = resposta[3] // Ao buscar todas as aparências deve-se escolher qual delas será usada, o número dela deve estar dentro dos colchetes. Ex: '[3]'            
             
             // Cria a lista de opções que foram buscadas 
             let optionsGraph = {
@@ -338,13 +337,12 @@ function getAppearanceConfig(nodes, relations) {
         error: (error) => {
             console.log(error)
         }
-    })
-    
+    })    
 }
 ```
 
 ```
-Obs: Onserve que as rotas utilizam uma variável 'usuarioLocal' que foi configurada no topo da linguagem JavaScrip:
+Obs: Observe que as rotas utilizam uma variável 'usuarioLocal' que foi configurada no topo da linguagem JavaScrip:
 
 $(document).ready(function () {
     Rotas.getUserName((usuario) => {
