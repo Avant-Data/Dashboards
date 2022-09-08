@@ -16,7 +16,7 @@
 
 <p align="center"> Como aplicar e utilizar um gráfico simples de área, barras, colunas e linhas utilizando formulários no dashboard.<br>
 
-    <br> 
+
 </p>
 
 ## Índice

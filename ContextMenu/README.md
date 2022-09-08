@@ -1,15 +1,16 @@
-<!-- <p align="center">
+<p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p> -->
+ <img width=250px height=82px src="https://i.imgur.com/zHVh1RJ.png" alt="Project logo"></a>
+</p>
+
 
 <h3 align="center">Menu de contexto</h3>
 
-<!-- <div align="center">
+<div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
 
-</div> -->
+</div>
 
 ---
 
@@ -17,7 +18,7 @@
     <br> 
 </p>
 
-## 📝 Conteúdo
+## Conteúdo
 
 - [Sobre](#about)
 - [Começando](#getting_started)
@@ -41,8 +42,12 @@ Obs: Esse modelo é criado para ser usado nos cartões de formulário no Dashboa
 Ao baixar o código fonte, o usuário deve copiar toda a função 'contextMenuFomulário' e colar na janela de edição de formulário. É importante notar que essa função só funciona se estiver dentro de uma tag html de script.
 
 Ao fazer isso é necessário executar a função, passando como argumento o id (entre aspas) do elemento  html que vai receber o menu. Uma forma de fazer isso é chamar a função quando o documento estiver pronto. No próprio código fonte já existe um exemplo dessa interação, como no exemplo abaixo.
-![Exemplo de documento pronto](https://i.imgur.com/rPDu6Zp.png)
 
+```js
+$(document).ready(() => {
+  contextMenuFormulario('id-do-elemento-html-que-vai-receber-o-menu')
+})
+```
 
 ```
 Obs: Caso ja tenha alguma função com esse mesmo nome, é necessário alterá-lo para que não haja conflito sobre qual função deve ser usada.
