@@ -25,7 +25,6 @@
         searchScan()
     }); 
 
-
     function getAppearanceConfig(nodes, relations) {
       
         $.ajax({
@@ -34,12 +33,9 @@
             type: 'GET',
             async: false,
             success: (resposta) => {
-                console.log('resposta')
-                console.log(resposta)
                 
                 let key = resposta[0] // caso tenha buscado a aparência padrão 
-                // let key = resposta[3] // Ao buscar todas as aparências deve-se escolher qual delas será usada, o número dela deve estar dentro dos colchetes. Ex: '[3]'
-                
+                // let key = resposta[3] // Ao buscar todas as aparências deve-se escolher qual delas será usada, o número dela deve estar dentro dos colchetes. Ex: '[3]'                
                 
                 // Cria a lista de opções que foram buscadas 
                 let optionsGraph = {
@@ -51,14 +47,12 @@
                     physics: JSON.parse(key['physics'])
                 }
                 
-                createGraph('divGraphStands', nodes, relations, optionsGraph)
-                
+                createGraph('divGraphStands', nodes, relations, optionsGraph)                
             },
             error: (error) => {
                 console.log(error)
             }
-        })
-        
+        })        
     }
 
     function createGraph(id, nodeslist, relations, options) {
@@ -146,8 +140,7 @@
                                         nodesIndexados.push(arrayRef[i].id) 
                                     }
                                 }
-                            }
-                            
+                            }                            
                         } else {
                             if(arrayRef.type == "cve") {
                                 if (nodesIndexados.includes(arrayRef.id) == false) {
