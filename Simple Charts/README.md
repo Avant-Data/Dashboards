@@ -25,6 +25,7 @@
 - [Começando](#starting)
 - [Estrutura](#structure)
 - [Pesquisa](#search)
+- [Precauções](#precaution)
 - [Construído Utilizando](#built_using)
 
 ## Sobre <a name = "about"></a>
@@ -217,6 +218,13 @@ function searchData() {
 
 Nesse modelo, utilizamos uma busca dentro de um dos índices mais usados do AvantData, o AvantAgent. Como os dados dos índices no nosso sistema é, por padrão, indexado dentro de um banco de dados não relacional, utilizamos a [AvantAPI](https://avantapi.avantsec.com.br/) para fazer uma busca atravez do Custom Search (rota da nosa API em que mandamos uma query de pesquisa para o ElasticSearch e ela retorna o resultado).
 
+## Precauções <a name = "precaution"></a>
+
+O modelo disponibilizado pelo código fonte conta com alguns elementos HTML com atributo "id" e por isso, para usar em outros paineis, é necessário alterar todos os atributos "id" e todos os lugares onde ele é utilizado.
+
+Os atributos "id" são uma identidade ÚNICA de cada elemento, caso contrário ele pode ter problemas para funcionar gerando conflitos na leitura do código pelo navegador.
+
+O mesmo acontece com os nomes de cada 'function' JavaScript, cada nome deve ser único para cada cópia desse modelo em uma visualização, tanto na criação, quando na hora de executar.
 
 ## Construído Utilizando <a name = "built_using"></a>
 

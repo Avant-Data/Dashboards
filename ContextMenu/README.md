@@ -23,11 +23,7 @@
 - [Começando](#getting_started)
 - [Utilização](#usage)
 - [Construído Utilizando](#built_using)
-<!-- - [Deployment](#deployment)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgement) -->
+
 
 ##  Sobre <a name = "about"></a>
 
