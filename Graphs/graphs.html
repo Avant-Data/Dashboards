@@ -89,15 +89,12 @@
         let cpe_nome = 'cpe:/a:grafana:grafana:6.6.1'
         let urlSearch = 'https://services.nvd.nist.gov/rest/json/cpes/1.0?addOns=cves&resultsPerPage=50&cpeMatchString=' + cpe_nome;
            
-        // busca todas as CVEs da api externa
+        // busca todas as CVEs da api externa do NIST (National Institute of Standards and Technology)
         $.ajax({
             url: urlSearch,
             method: 'GET',
             async: false,
-            success: (responseCPE) => {
-              
-                console.log('responseCPE')
-                console.log(responseCPE)
+            success: (responseCPE) => {              
                 
                 let cpeResultList = responseCPE.result.cpes
                 for (i in cpeResultList) {
@@ -137,9 +134,6 @@
             },
             data: JSON.stringify(queryDetailCVE),
             success: (responseCVE) => {
-
-                console.log('responseCVE88888')
-                console.log(responseCVE)
 
                 if (responseCVE.hits.hits) {
                     let arrayHits = responseCVE.hits.hits

@@ -23,11 +23,14 @@
 - [Peculiaridades](#peculiar)
 - [Começando](#starting)
 - [Estrutura](#structure)
+- [Pesquisa](#search)
+- [Aparência](#style)
+- [Precauções](#precaution)
 - [Construído Utilizando](#built_using)
 
 ## Sobre <a name = "about"></a>
 
-
+![Exemplo movimentação](https://i.imgur.com/shblPGd.png)
 
 Grafo é uma representação gráfica de valores ligados uns aos outros através de ralações, criando pontos e linhas para moldar uma visualização. Os pontos são chamados de <i>nós</i>, as linhas de <i>relações</i>. O AvantData disponibiliza toda a configuração e ultilização dessa ferramenta dentro do módulo AvantGraph, mas podem também ser criados dentro do dashboard.
 
@@ -84,7 +87,7 @@ color=" #38a0a3 ;"      --> Formato Hexadecimal
 color=" 255 250 250 ;"  --> Formato RGB
 ```
 
-A estrutura básica para criação de um grafo é feita dentro de uma função JavaScript. É necesário criar uma variável em formato de JSON  que deverá conter dois pricipais campos: 'nodes' e 'edges'.
+A estrutura básica para criação de um grafo é feita dentro de uma função JavaScript. É necesário criar uma variável em formato de JSON  que deverá conter dois pricipais campos: 'nodes' e 'edges'.<a name = "node_relation"></a>
 
 'Nodes' vai conter uma lista com todos os nós. Cada ítem dessa lista precisa conter subcampos:
 
@@ -133,10 +136,235 @@ network = new vis.Network(container, data, options);
 ```
 Ressaltando que no código fonte, as listas são criadas dinamicamente atravéz de uma pesquisa.
 
-Depois da criação da variável com as listas de nós e relações, é a hora de indicar o 'id' da estrutura html que receberá o gráfico, isso é feito dentro da variável 'container'. Logo após é chamada a biblioteca
+Depois da criação da variável com as listas de nós e relações, é a hora de indicar o 'id' da estrutura html que receberá o gráfico, isso é feito dentro da variável 'container'. Logo após é executada a biblioteca 'vis.Network()' e dentro dela são enviados alguns parâmetros que <b>obrigatóriamente</b> precisam estar nessa órdem:
+  * Primeiro: Deve ser a identificação do elemento HTML onde o grafo será criado, nesse caso com o nome da variável 'container'.
+  * Segundo: Deve ser a estrutura JSON que traz as listas de nós e relações, nesse caso com o nome da variável 'data'.
+  * Terceiro: Deve ser a estrutura JSON com a aparência que formatará o gráfo, em caso de não ter uma aparência selecionada, ainda deve ser enviada como '{}'. Nesse caso enviarêmos uma variável 'options' que será o resultado da busca das aparências explicada logo a frente.
+
+## Pesquisa <a name = "search"></a>
+
+Esse modelo tem o objetivo de trazer um exemplo de uma apresentação de grafo com dados dinâmicos, isto é, dados que são pesquisados no momento do carregamento do gráfico.
+
+O AvantScan é um módulo do AvantData que vaz varreduras procurando por vulnerabilidades em uma rede e indexa todos os resultados. Um desses dados é chamado de "CVE", que são códigos de vulnerabilidades conhecidas pela comunidade. A NIST (National Institute of Standards and Technology) documenta e espeficifica essas 'CVEs' que podem ser consultadas pela API deles.
+
+> A ideia dessa pesquisa exemplo é cruzar os dados no NIST com as CVEs indexadas pelo AvantScan e apresentar uma ligação de quais dados são correlacionados.
+
+No código fonte isso é feita em uma função JavaScript chamada searchScan(). No início é criada uma mensagem 'toastr' que aparecerá para informar o usuário que a pesquisa está sendo feita e então declaradas as variáveis que serão usadas e preenchidas no decorrer do código.
+
+```js
+toastr.info('Aguarde enquanto os dados são carregados.', 'Aviso', { positionClass: "toast-bottom-right",closeButton: "true"});
+  
+let nodesApiExterna = []    //todos as cves da api externa
+let nodesIndexados = []     //todas as cves indexadas        
+let AllNodes = []           //onde serão inseridos todos os nós para criação do gráfico
+let relation = []           //onde serão inseridos todos os links
+let moderation = []         // variável de apoio 
+```
+
+Depois é feita uma consulta pela API da NIST buscando os dados das vulnerabilidades encontrados numa CPE (conjunto semântico de vulnerabilidades). A pesquisa é feita usando AJAX e vai armazenar todas as CVEs encontradas em uma das variáveis criandas anteriormente.
+
+```js
+// busca todas as CVEs da api externa do NIST (National Institute of Standards and Technology)
+$.ajax({
+    url: urlSearch,
+    method: 'GET',
+    async: false,
+    success: (responseCPE) => {              
+        
+        let cpeResultList = responseCPE.result.cpes
+        for (i in cpeResultList) {
+            let cveList = cpeResultList[i].vulnerabilities
+            for (j in cveList) {
+                
+                if(nodesApiExterna.includes(cveList[j]) == false) {
+                    nodesApiExterna.push(cveList[j])
+                }
+            }
+        }
+    },
+    error: (err) => {
+        console.log(err)
+    }
+})  
+```
+Depois é feita uma consulta atravéz da [AvantAPI]((#built_using)) buscando os dados indexados do AvantScan, também feita com uma estrutura AJAX. As CVEs encontradas são armazenadas em outra variável.
+
+```js
+let queryDetailCVE = {
+    index: "avantscan_results",
+    size: 5000,
+    body: {
+        query: {
+            query_string: {
+                query: `nvt.refs.ref: *`
+            }
+        }
+    }
+};
+
+// Busca as CVEs indexadas no AvantData nos índices avantscan_results
+$.ajax({
+    url: '/avantapi/avantData/search/customSearch',
+    method: 'POST',
+    async: false,
+    headers: {
+        'cluster': 'AvantData'
+    },
+    data: JSON.stringify(queryDetailCVE),
+    success: (responseCVE) => {
+
+        if (responseCVE.hits.hits) {
+            let arrayHits = responseCVE.hits.hits
+            arrayHits.forEach((result)=>{ 
+                let arrayRef = result._source.nvt.refs.ref
+                if(Array.isArray(arrayRef)) {
+                    for(i in arrayRef) {
+                        if(arrayRef[i].type == "cve") {
+                            if (nodesIndexados.includes(arrayRef[i].id) == false) {
+                                nodesIndexados.push(arrayRef[i].id) 
+                            }
+                        }
+                    }
+                    
+                } else {
+                    if(arrayRef.type == "cve") {
+                        if (nodesIndexados.includes(arrayRef.id) == false) {
+                            nodesIndexados.push(arrayRef.id) 
+                        }
+                    }
+                }
+            })
+        }  
+    },
+    error: (err) => {
+        console.log(err)
+    }
+})
+```
+
+A última parte da função é composta pera comparação entre as variáveis que contem os dois grupos de CVEs encontradas nas duas pesquisas, quando elas são equivalentes são criados itens de 'nó' e 'relações'. Uma das variáveis será usada para montar a lista dos 'nós' do grafo, outra será usada para formar a lista das 'relações' seguindo a [estrutura](#node_relation) ja mensionada anteriormente. 
+
+Quando a comparçaão finaliza, as listas de nós e relações são enviadas para outra função que vai buscar as aparências para customizar o grafo e, enfim, montar o grafo.
+
+```js
+//Compara as CVEs das duas fontes e cria as litas de nós e relações
+for (t in nodesIndexados) {
+    if(nodesApiExterna.includes(nodesIndexados[t]) == true) {
+        moderation.push(nodesIndexados[t])
+        
+        AllNodes.push({ 
+            "id": `${nodesIndexados[t]}`,
+            "label": `${nodesIndexados[t]}`,
+            "title": `${nodesIndexados[t]}`, 
+            "attributes": {}
+        })
+        
+        relation.push({
+            "from": `${nodesIndexados[t]}`,
+            "to": 'Vulneráveis',
+            "label": "Link",
+            "title": "" 
+        })
+        relation.push({
+            "from": `${nodesIndexados[t]}`,
+            "to": 'Indexado',
+            "label": "Link",
+            "title": "" 
+        })
+        
+        if(moderation.includes('Vulneráveis') == false) {
+            moderation.push('Vulneráveis')
+            AllNodes.push({
+                "id": 'Vulneráveis',
+                "label": 'Vulneráveis',
+                "title": 'Vulneráveis', 
+                "attributes": {}
+            })
+        }
+        if(moderation.includes('Indexado') == false) {
+            moderation.push('Indexado')
+            AllNodes.push({ 
+                "id": 'Indexado',
+                "label": 'Indexado',
+                "title": 'Indexado', 
+                "attributes": {}
+            })
+        }
+    }
+}          
+// Envia as listas de nós e relações para a função que vai buscar a aparência para montar o grapho
+getAppearanceConfig(AllNodes, relation) 
+```
+
+## Aparência<a name = "style"></a>
+
+A imagem a seguir representa diferentes visualizações do mesmo resultado das pesquisas feitas em um ambiente de testes com dados indexados do AvantScan, e representam um pequeno exemplo da variedade de formas e cores que podem ser criadas.
+
+![Grafo padrão](https://i.imgur.com/QpwxOWB.png)
+
+A função ja inicia recebendo dois parâmetros, que são as listas de nós (nodes) e relações (relations). Logo a seguir inicia a busca das aparências com o AJAX. O campo 'url' pode ser preenchido com duas rotas diferentes da API, uma delas para buscar a aparência definida como padrão, ja a outra para trazer uma lista com todas as aparências já criadas, ao alterar a rota definida, deve-se também alterar a váriavel 'key' que buscará o valor correto do índice da resposta, alterando qual ítem da lista de aparências deseja buscar.
+
+Após escolher a aparência a variável 'optionsGraph' vai montar e armazenar a estrutura JSON com as informações da aparência escolhida e logo após será executada a função 'createGraph()' enviando o id HTML, a lista de nós, a lista de relações e as opções de aparências escolhidas.
+
+
+```js
+function getAppearanceConfig(nodes, relations) {
+      
+    $.ajax({
+        // url: `/avantapi/2.0/graph/appearance/${usuarioLocal}`,              // Buscar todas as aparências 
+        url: `/avantapi/2.0/graph/appearance/default/${usuarioLocal}`,   // Buscar a aparência padrão
+        type: 'GET',
+        async: false,
+        success: (resposta) => {            
+            
+            let key = resposta[0] // caso tenha buscado a aparência padrão 
+
+            // let key = resposta[3] // Ao buscar todas as aparências deve-se escolher qual delas será usada, o número dela deve estar dentro dos colchetes. Ex: '[3]'
+            
+            
+            // Cria a lista de opções que foram buscadas 
+            let optionsGraph = {
+                interaction: JSON.parse(key['interaction']),
+                nodes: JSON.parse(key['nodes']),
+                edges: JSON.parse(key['edges']),
+                manipulation: JSON.parse(key['manipulation']),
+                layout: JSON.parse(key['layout']),
+                physics: JSON.parse(key['physics'])
+            }
+            
+            // Executa a função de criação de gráfico enviando o id HTML, a lista de nós, a lista de relações e as opções de aparências escolhidas.
+            createGraph('divGraphStands', nodes, relations, optionsGraph)            
+        },
+        error: (error) => {
+            console.log(error)
+        }
+    })
+    
+}
+```
+
+```
+Obs: Onserve que as rotas utilizam uma variável 'usuarioLocal' que foi configurada no topo da linguagem JavaScrip:
+
+$(document).ready(function () {
+    Rotas.getUserName((usuario) => {
+        usuarioLocal = JSON.parse(usuario)
+    })
+    
+    searchScan()
+}); 
+```
+## Precauções <a name = "precaution"></a>
+
+O modelo disponibilizado pelo código fonte conta com alguns elementos HTML com atributo "id" e por isso, para usar em outros paineis, é necessário alterar todos os atributos "id" e todos os lugares onde ele é utilizado.
+
+Os atributos "id" são uma identidade ÚNICA de cada elemento, caso contrário ele pode ter problemas para funcionar gerando conflitos na leitura do código pelo navegador.
+
+O mesmo acontece com os nomes de cada 'function' JavaScript, cada nome deve ser único para cada cópia desse modelo em uma visualização, tanto na criação, quando na hora de executar.
 
 ## Construído Utilizando <a name = "built_using"></a>
 
 - [AvantData](https://www.avantdata.com.br/) - Plataforma de análise, correlacionamento e gestão de dados em redes corporativas
 - [AvantApi](https://avantapi.avantsec.com.br/) - Família de endpoints RESTFUL API para customização de ações no AvantData
 - [Vis Network](https://visjs.org/) - Biblioteca para criação de grafos de vínculos
+- [NIST](https://nvd.nist.gov/) - <i>National Institute of Standards and Technology</i> que documenta e criteriza vulnerabilidades.
