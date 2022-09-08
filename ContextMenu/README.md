@@ -66,39 +66,12 @@ Para alterar o ícone que aparece ao lado de cada opção, é necessário altera
 Obs: Ao fazer qualquer alteração, é necessário prestar atenção para não deixar nenhuma chave, parêntese ou colchete aberto ou desalinhado, pois eles são os separadores de cada bloco, e portanto fundamentais.
 ```
 
-<!-- ### Configurando
-
-
-
-##  Running the tests <a name = "tests"></a>
-
-Explain how to run the automated tests for this system.
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-``` -->
-
 ##  Utilização <a name="usage"></a>
 
 O campo de uso dos menus de contexto são infinitos, se limitando somente a criatividade e a capacidade do usuário. A mecânica de adicionar opções permite ativar comandos através de poucos cliques.
 
 Comumente usados no AvantData para deletar ítens ou carregar tabelas, importar ou exportar  arquivos, editar dados, limpar campos de formulário, enviar requisições API e muito mais. 
 
-<!-- ##  Deployment <a name = "deployment"></a>
-
-Add additional notes about how to deploy this on a live system. -->
 
 ##  Construído Utilizando <a name = "built_using"></a>
 

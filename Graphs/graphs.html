@@ -1,12 +1,14 @@
-<head>
+ <head> <!--Bloco da importação da biblioteca -->
     <script defer type="text/javascript" src="/AvantdataNovo/public/js/visJs/vis-network.min.js"></script>
 </head>
 
+<!-- Bloco do título -->
 <div class="p-3" style=" font-family: 'Bahnschrift', sans-serif;background-color: #38a0a4; color: white;">    
     <h4>Título</h4>
     <h6>Subtítulo</h6>
 </div>
 
+<!-- Bloco do grafo -->
 <div id="divGraphStands" style="height: 495px;">
     <!-- O grafo será inserido aqui-->
 </div>
@@ -19,8 +21,7 @@
         Rotas.getUserName((usuario) => {
             usuarioLocal = JSON.parse(usuario)
         })
-        // createGraph('divGraphStands',{})
-        // getAppearanceConfig()
+        
         searchScan()
     }); 
 
@@ -64,27 +65,10 @@
         if(nodeslist != '' && nodeslist != undefined && nodeslist != null) {
 
             var data = {
+                    //Bloco da lista de Nós 
                 nodes: nodeslist,
-                edges: relations
-                // nodes: [
-                //     { "id": '1', "label": "Nó A", "attributes": { "attr!": "Ex1", "attr2": "Ex2" }, "title": "Nó central" },
-                //     { "id": '2', "label": "Nó B", "attributes": {}, "title": "Título nó B" },
-                //     { "id": '3', "label": "Nó C", "attributes": {}, "title": "Título nó C" },
-                //     { "id": '4', "label": "Nó D", "attributes": {}, "title": "Título nó D" },
-                //     { "id": '5', "label": "Nó E", "attributes": {}, "title": "Título nó E" },
-                //     { "id": '6', "label": "Nó F", "attributes": {}, "title": "Título nó F" },
-                //     { "id": '7', "label": "Nó G", "attributes": {}, "title": "Título nó G" },
-                //     { "id": '8', "label": "Nó H", "attributes": {}, "title": "Título nó H" },
-                // ],
-                // edges: [
-                //     { "from": '1', "to": 2, "label": "Link 1", "title": "Título link A" },
-                //     { "from": '1', "to": 3, "label": "Link 2", "title": "Título link A" },
-                //     { "from": '1', "to": 4, "label": "Link 3", "title": "Título link A" },
-                //     { "from": '1', "to": 5, "label": "Link 4", "title": "Título link A" },
-                //     { "from": '1', "to": 6, "label": "Link 5", "title": "Título link A" },
-                //     { "from": '2', "to": 7, "label": "Link 6", "title": "Título link A" },
-                //     { "from": '2', "to": 8, "label": "Link 7", "title": "Título link A" },
-                // ]
+                    //Bloco da lista de Relações
+                edges: relations             
             }        
             var container = document.getElementById(id);
             network = new vis.Network(container, data, options);
