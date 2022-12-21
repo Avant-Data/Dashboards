@@ -236,7 +236,7 @@ function getPanels() {
         "conector": "AvantData",
         "query": "SELECT nome FROM painel_dashboard WHERE visualizacao_pai = "+idVisualizacaoAtual+" AND autor = 'master' ORDER BY posicao;"
     }
-    
+
     $.ajax({
         url: `/avantapi/sql/selectQuery`,
         method: 'POST',
@@ -305,15 +305,60 @@ Observa-se que existem algumas cláusulas "toastr" dentro do código. Essa é a 
 
 Os tokens ficam armazenados na aba atual do navegador e podem ser resgatados mesmo que o usuário mude o painel ou abra outra visualização do dashboard. É uma forma eficiente de passar dados entre os paineis sem precisar refazer pesquisas e também aplicar dados de um formulário a cartões tipo gráfico (os gráficos possuem em sua criação a opção de resgatar valores de token). Ao pivotear (reencaminhar o usuário para outro painel), os gráficos daquele painel vão se atualizar e caso algum deles faça alguma busca por token, os dados serão atualizados.
 
-Para resgatar os valores de um token utiliza-se o padrão conforme o exemplo abaixo, onde 'token_key' é o nome da chave do íten do [session storage](#session_storage).
+Para resgatar os valores de um token utiliza-se o padrão conforme o exemplo abaixo, onde 'token_key' é o nome da chave do íten do [session storage](#session_storage). Dessa forma é possível utilizar o valor que foi guardado no token. Pode-se armazenar esse valor novamente dentro de uma variável, e dessa forma ele fica disponível para ampla utilização.
+
+No exemplo a seguir, é mostrado a utilização uma variável que guarda valor do token para ser usada dentro da query de pesquisa semelhante a usada anteriormente, mas o usuário tem total liberdade de fazer uso dessa informação de qualquer outra forma. (Esse exemplo não está contido no código fonte)
 
 ```js
-sessionStorage.getItem('token_key');
+// sintaxe de como resgatar o valor do token
+sessionStorage.getItem('token_key');                    
+
+// guardando o valor do token em variável
+var variavelToken = sessionStorage.getItem('token_key'); 
+
+// exemplo: o token guarda uma informação do nome do autor de algo que ja está guardado no banco de dados
+// é passado esse valor dentro da query utilizando a variável acima criada.
+var query = {
+        "conector": "AvantData",
+        "query": "SELECT nome FROM painel_dashboard WHERE autor = "+ variavelToken +" ORDER BY posicao;"
+    }
 ```
 
 ### Limpar <a name = "clean"></a>
 
- segunda função utilizada é nominada 'clearForm', criada em linguagem JavaScript. A utilidade dela é apagar os dados dos campos que foram preenchidos, apagar todos os tokens e recarregar os gráficos que possam estar presentes nesse painel. É iniciada com o clique no botão 'Limpar'.
+ Segunda função utilizada é nominada 'clearForm', criada em linguagem JavaScript. A utilidade dela é apagar os dados dos campos que foram preenchidos, apagar todos os tokens e recarregar os gráficos que possam estar presentes nesse painel. É iniciada com o clique no botão 'Limpar'.
+
+ ```js
+// exemplo: sintaxe de como limpar um campo input
+$('#id_do_input').val('') 
+ ```
+
+* A primeira parte é $('#') onde deve ser colocado o input.
+* A segunda parte é .val('') onde o usuário define qual o valor que o input vai ter (nesse caso o valor é vazio).
+     - caso o usuário queira deixar o input com algum outro valor diferente de vazio .val('') , pode-se dar outro valor dentro dos parenteses como .val('outro valor').
+
+Observe a maneira como é feita no código fonte:
+
+```js
+//limpa todos os campos dos inputs, todos os tokens e depois manda resecarregar o dashboard
+function clearForm() {
+    
+    // mensagem de alerta que vai aparecer no canto da tela
+    toastr.info('Limpando campos.', 'Atenção', { positionClass: "toast-bottom-right", closeButton: "true" });
+    
+    $('#textInput').val('')         // corresponde ao id do input de texto
+    $('#numberInput').val('')       // corresponde ao id do input de número
+    $('#selectInput').val('')       // corresponde ao id do input select
+    $('#datalistInput').val('')     // corresponde ao id do input datalist
+    $('#dateTimeInput').val('')     // corresponde ao id do input de data e hora
+    $('#commentInput').val('')      // corresponde ao id do input de comentário/textArea
+            
+    resetDashboard()                //função nativa do AvantData que recarrega o Dashboard e limpa os tokens.
+} 
+```
+
+Utilizando essa mesma dinâmica e sintaxe, o usuário pode alterar o valor dos inputs em enventos ou comandos com os valores que quiser.
+
 
 ## Precauções <a name = "precaution"></a>
 
