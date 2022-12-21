@@ -333,9 +333,9 @@ var query = {
 $('#id_do_input').val('') 
  ```
 
-* A primeira parte é $('#') onde deve ser colocado o input.
+* A primeira parte é $('#') onde deve ser colocado o id do input.
 * A segunda parte é .val('') onde o usuário define qual o valor que o input vai ter (nesse caso o valor é vazio).
-     - caso o usuário queira deixar o input com algum outro valor diferente de vazio .val('') , pode-se dar outro valor dentro dos parenteses como .val('outro valor').
+     - caso o usuário queira deixar o input com algum outro valor diferente de vazio .val('') , pode dar outro valor dentro dos parenteses como .val('outro valor').
 
 Observe a maneira como é feita no código fonte:
 
