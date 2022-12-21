@@ -236,6 +236,7 @@ function getPanels() {
         "conector": "AvantData",
         "query": "SELECT nome FROM painel_dashboard WHERE visualizacao_pai = "+idVisualizacaoAtual+" AND autor = 'master' ORDER BY posicao;"
     }
+    
     $.ajax({
         url: `/avantapi/sql/selectQuery`,
         method: 'POST',
