@@ -19,8 +19,9 @@
     </div>
 
     <div class="ml-3 mr-3 " style="background-color: white; margin-top: -7px ">
-
         <div class="md-form md-outline float-left input-group " style="width: 600px; margin-top: 10px; ">
+            
+            <!-- bloco do campo de data inicial -->
             <div class="input-group-prepend">
                 <span class="input-group-text" 
                 style="border-radius: 10px 0px 0px 10px; border-color: #38a0a4 !important; border-width: medium; background-color:#38a0a4; color: white; height: 34px !important ;font-size: 1.0em;">Inicial</span>
@@ -30,20 +31,21 @@
                 style="border-radius: 0px 10px 10px 0px; border-color: #38a0a4 !important; border-width: medium; height: 34px !important;color:black ;font-size: 1.0em;">
     
     
+            <!-- bloco do campo de data final -->
             <div class="input-group-prepend">
                 <span class="input-group-text" 
                 style="border-radius: 10px 0px 0px 10px; border-color: #38a0a4 !important; border-width: medium; height: 34px !important;background-color:#38a0a4; color: white;font-size: 1.0em;">Final</span>
             </div>
             <input type="datetime-local" id="finalDate" class="form-control bg-white"
-                aria-describedby="inputTasksFormScanInputGroup" placeholder="Data Inicial"
-                style="border-radius: 0px 10px 10px 0px; border-color: #38a0a4 !important; border-width: medium; height: 34px !important;color:black ;font-size: 1.0em;">
-    
-            <a onclick="makeTokens()"><span class="input-group-text font-weight-bold text-white  text-center"
-                    id="inputTasksFormScanInputGroup"
-                    style="border-radius: 10px; height: 34px !important ;font-size: 1.2em; padding-top: -10px; background-color: #e96817;">Token</span></a>
+            aria-describedby="inputTasksFormScanInputGroup" placeholder="Data Inicial"
+            style="border-radius: 0px 10px 10px 0px; border-color: #38a0a4 !important; border-width: medium; height: 34px !important;color:black ;font-size: 1.0em;">
             
-        </div>
-    
+            <!-- bloco do botão-->
+            <a onclick="makeTokens()"><span class="input-group-text font-weight-bold text-white  text-center"
+                id="inputTasksFormScanInputGroup"
+                style="border-radius: 10px; height: 34px !important ;font-size: 1.2em; padding-top: -10px; background-color: #e96817;">Token</span></a>
+            
+        </div>    
     </div>
 </div>
 
@@ -63,24 +65,14 @@
             toastr.warning('Os campos são obrigatórios', 'Aviso', { positionClass: "toast-bottom-right",closeButton: "true"});
             return
         }
-        
-        console.log('dateInput')
-        console.log(dateInputInicial)
-        console.log(dateInputFinal)
-        
+
         //Criação de variáveis que resgata os valores de data escolhidos e edita num formato legível. Ex:2023/01/15 17:27:00
         let dateformatInicial = formatDate(dateInputInicial)
-        let dateformatFinal = formatDate(dateInputFinal)
-        console.log('dateformat')
-        console.log(dateformatInicial)
-        console.log(dateformatFinal)
+        let dateformatFinal = formatDate(dateInputFinal)        
         
         //Criação de variáveis que resgata os valores de data escolhidos e edita num formato epoch. Ex:1673814420000
         let epochDateInicial = new Date(dateInputInicial).valueOf() 
-        let epochDateFinal = new Date(dateInputFinal).valueOf() 
-        console.log('epochDate')
-        console.log(epochDateInicial)
-        console.log(epochDateFinal)
+        let epochDateFinal = new Date(dateInputFinal).valueOf()        
         
         // Criação de variável do tipo objeto onde os nomes das chaves serão os nomes das chaves do token. 
         // Ex: 'dado.teste = 10' vai gerar um token com nome 'teste' cujo valor é '10'
@@ -104,7 +96,4 @@
         tmp = dateTemp.split('-');
         return tmp[0] + "/" + tmp[1] + "/" + tmp[2] + " " + hourTemp;
     }
-    
-    
-    
 </script>
