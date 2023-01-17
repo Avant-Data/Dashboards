@@ -86,14 +86,14 @@ Um dos usos mais comuns dos cabeçalhos no dashboard é poder gerar pequenas con
 
 ![Tipos de cores](https://i.imgur.com/4JSM8uY.png)
 
-Nesse modelo, juntamente com o código fonte <b><i>header_token.html</i></b> nessa lista de arquivos, traz um exemplo com campos de datas. A ideia é trazer um cabeçalho onde o usuário vai inserir uma data inicial e uma final e ao clicar no botão, vai salvar essas informações em tokens, os gráficos abaixo nesse painel vão estar configurados para filtrar as datas das informações que vai buscar a partir desses tokens. Assim o usuário poderá customizar o intervalo de tempo utilizando o cabeçalho sem precisar abrir uma nova configuração de gráficos.
+Nesse modelo, juntamente com o código fonte <b><i>header_token.html</i></b> nessa lista de arquivos, traz um exemplo com campos de datas. A ideia é trazer um cabeçalho onde o usuário vai inserir uma data inicial e uma final e ao clicar no botão, vai salvar essas informações em <i>tokens</i>, os gráficos abaixo desse painel vão estar configurados para filtrar as datas desses <i>tokens</i>. Assim o usuário poderá customizar o intervalo de tempo utilizando o cabeçalho sem precisar abrir uma nova configuração de gráficos.
 
 ```
 OBS: Aqui utilizamos a ideia de enviar campos de data como token, mas a mesma lógica pode ser usada para criar tokens de vários outros formatos para criar outros tipos de filtros.
 ```
-Para a confecção do sistemas de token, no código será necessário adicionar alguns campos em <i>HTML</i> e também uma pequena e simples composição em <i>JavaScript</i>.
+Para a confecção do sistemas de <i>token</i>, no código será necessário adicionar alguns campos em <i>HTML</i> e também uma pequena e simples composição em <i>JavaScript</i>.
 
-Abaixo está o bloco em HTML que será adiconado, que por sua vez é dividido em outros 3 blocos. O primeiro e o segundo são composições que montam os campos input onde o usuário vai inserir as data ( type="datetime-local" ). O terceiro bloco é a composição que monta o botão de nome 'Token' que ao ser clicado vai executar uma função que está montada em JavaScrip ( onclick="makeTokens()" )
+Abaixo está o bloco em HTML que será adicionado, que por sua vez é dividido em outros 3 blocos. O primeiro e o segundo são composições que montam os campos input onde o usuário vai inserir as data ( type="datetime-local" ). O terceiro bloco é a composição que monta o botão de nome 'Token' que ao ser clicado vai executar uma função que está montada em JavaScrip ( onclick="makeTokens()" )
 
 ```html
 <div class="ml-3 mr-3 " style="background-color: white; margin-top: -7px ">
@@ -126,16 +126,16 @@ Abaixo está o bloco em HTML que será adiconado, que por sua vez é dividido em
     </div>    
 </div>
 ```
-Como essa opção conta com funções em JavaScript, qualquer código que seja feito nessa linguagem deve obrigatotiamente estar montado dentro das tags \<script> \</script>, caso contrário vai acarretar em erros profundos na execução de todo esse projeto.
+Como essa opção conta com funções em JavaScript, qualquer código que seja feito nessa linguagem deve <b>obrigatotiamente</b> estar montado dentro das tags \<script> \</script>, caso contrário vai acarretar em erros profundos na execução de todo esse projeto.
 
 A função 'makeTokens()' que será executada, inicia resgatando os valores inseridos nos campos de data e verificando se algum dos campos está vazio, e caso estejam, vai interromper a execução e enviar um aviso que os campos são obrigatórios.
 Campos de data costumam estar em diversos formatos, por isso nesse modelo trouxemos dentro dessa função 3 opções de formatos que são comumente usados para fazer pesquisas em bancos de dados.
 
-Em seguida é criada uma variavel 'dado' que é do tipo objeto. A partir dela são criados os nomes e os valores (chave -> valor) que serão transformados em tokens. Por exemplo, 'dado.Aniversario' dará origem a um token cuja chave é 'Aniversário', dessa forma dizer que 'dado.Aniversario = 11/11/2000' dará origem ao token de chave 'Aniversário' cujo valor é '11/11/2000'. 
+Em seguida é criada uma variavel 'dado' que é do tipo objeto. A partir dela são criados os nomes e os valores (chave -> valor) que serão transformados em <i>tokens</i>. Por exemplo, 'dado.Aniversario' dará origem a um <i>token</i> cuja chave é 'Aniversário', dessa forma dizer que 'dado.Aniversario = 11/11/2000' dará origem ao <i>token</i> de chave 'Aniversário' cujo valor é '11/11/2000'. 
 
 No caso do código fonte, os <i>tokens</i> estão sendo cirados com os nomes "dataInicial" e "dataFinal", mas podem ser alterados da forma que o usuário achar melhor, inclusive acrescentar ou deletar algumas dessas opções. Já os valores estão sendo dados com variáveis ja anteriormente criadas. Por padrão o AvantData utiliza o formato <i>epoch</i> para criar um filtro de campo chamado <i>GenerateTime</i>, por isso é utilizado o formato <i>epoch</i> como valor da variável, que será o valor do <i>token</i>.
 
-A variável 'dados' e todas as suas configurações de chave e valor serão enviadas para a função nativa do AvantData de nome 'applyDashboard(dados)' que vai criar os <i>tokens</i> no navegador e vai mandar os gráficos serem recarregados.
+A variável 'dados' e todas as suas configurações de chave e valor serão enviadas para a função nativa do AvantData de nome 'applyDashboard(dados)' que vai criar os <i>tokens</i> no navegador e recarregar os gráficos.
 
 ```js
 function makeTokens() {
@@ -185,7 +185,7 @@ function formatDate(date) {
 Para utilizar os tokens nos gráficos de criação rápida, é necessário fazer algumas configurações na hora de criar cada um deles. Na montagem da pesquisa existe um campo de filtros->Intervalo de pesquisa, por padrão o AvantData utiliza o campo GenerateTime como indicador de tempo, mas a depender do dado utilizado podem existir outros que o usuário prefira, cada qual com um formato de data específico. Ao clicar com o botão direito do mouse sobre o campo vai aparecer um menu de contexto com a opção 'Editar Campo'.
 ![Tipos de cores](https://i.imgur.com/NCp8q0E.png)
 
-Ao clicar nessa opção, vai abrir uma modal com vários atalhos de tempos comuns a serem pesquisados, mas para utilizar os <i>tokens</i> o que interessa é parte inferior "Variável". Nesse bloco existem dois campos que se altocompletam com as opções de todos os <i>tokens</i> disponívels para ajustar as data de início e fim da busca. O usuário deve escolhê-los pelo nome e clicar no botão 'token' abaixo. Com isso o gráfico sempre vai buscar os valores indicados variavelmente pelos <i>tokens</i> com aqueles nomes.
+Ao clicar nessa opção, vai abrir uma modal com vários atalhos de tempos comuns a serem pesquisados, mas para utilizar os <i>tokens</i> o que interessa é parte inferior "Variável". Nesse bloco existem dois campos que se altocompletam com as opções de todos os <i>tokens</i> disponívels para ajustar as data de início e fim da busca. O usuário deve escolhê-los pelo nome e clicar no botão 'TOKEN' abaixo. Com isso o gráfico sempre vai buscar os valores indicados variavelmente pelos <i>tokens</i> com aqueles nomes.
 ![Tipos de cores](https://i.imgur.com/bc28qjr.png)
 
 
