@@ -183,6 +183,8 @@ function formatDate(date) {
 }
 ```
 Para utilizar os tokens nos gráficos de criação rápida, é necessário fazer algumas configurações na hora de criar cada um deles. Na montagem da pesquisa existe um campo de filtros->Intervalo de pesquisa, por padrão o AvantData utiliza o campo GenerateTime como indicador de tempo, mas a depender do dado utilizado podem existir outros que o usuário prefira, cada qual com um formato de data específico. Ao clicar com o botão direito do mouse sobre o campo vai aparecer um menu de contexto com a opção 'Editar Campo'.
+
+
 ![Tipos de cores](https://i.imgur.com/NCp8q0E.png)
 
 Ao clicar nessa opção, vai abrir uma modal com vários atalhos de tempos comuns a serem pesquisados, mas para utilizar os <i>tokens</i> o que interessa é parte inferior "Variável". Nesse bloco existem dois campos que se altocompletam com as opções de todos os <i>tokens</i> disponívels para ajustar as data de início e fim da busca. O usuário deve escolhê-los pelo nome e clicar no botão 'TOKEN' abaixo. Com isso o gráfico sempre vai buscar os valores indicados variavelmente pelos <i>tokens</i> com aqueles nomes.
