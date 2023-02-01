@@ -22,8 +22,9 @@
 - [Menu de Contexto](#contextmenu)
 - [Cabeçalho](#header)
 - [Sankey](#sankey)
-- [Linha do Tempo](#timeline)
-- [Grafo](#form)
+- [Gráficos Simples](#simplecharts)
+- [Formulários](#forms)
+- [Grafo](#graphs)
 - [Carrossel](#carousel)
 - [Tabela de Dados](#datatable)
 - [Rodapé](#footer)
@@ -38,19 +39,23 @@ Documentação dos cabeçalhos detalhada na pasta [Header](./Header/)
 
 ## Sankey <a name = "sankey"></a>
 
-Documentação do sankey detalhada na pasta [Sankey](./Sankey/)
+Documentação do sankey detalhada na pasta [Sankey Charts](./Sankey%20Chart/)
 
-## Linha do Tempo <a name = "timeline"></a>
+## Gráficos Simples <a name = "simplecharts"></a>
 
-Documentação da linha do tempo detalhada na pasta [Timeline](./Timeline/)
+Documentação da linha do tempo detalhada na pasta [Simple Charts](./Simple%20Charts/)
 
-## Grafo <a name = "timeline"></a>
+## Formulários <a name = "forms"></a>
+
+Documentação dos grafos detalhada na pasta [Formulary](./Formulary/)
+
+## Grafo <a name = "graphs"></a>
 
 Documentação dos grafos detalhada na pasta [Graphs](./Graphs/)
 
-## Carrossel <a name = "timeline"></a>
+## Carrossel <a name = "carousel"></a>
 
-Documentação do carrossel detalhada na pasta [Graphs](./Carousel/)
+Documentação do carrossel detalhada na pasta [Carousel](./Carousel/)
 
 ## Tabela de Dados <a name = "datatable"></a>
 
@@ -58,7 +63,7 @@ Documentação das tabelas de dados detalhada na pasta [Datatable](./Datatable/)
 
 ## Rodapé <a name = "footer"></a>
 
-Documentação dos rodapés detalhada na pasta [Datatable](./Footer/)
+Documentação dos rodapés detalhada na pasta [Footer](./Footer/)
 
 ## Construído Utilizando <a name = "built_using"></a>
 
